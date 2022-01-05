@@ -1,0 +1,90 @@
+{%extends "body.html"%}
+{%block content%}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Title</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+
+     
+
+<p>Nombre: {{ object.nombre}}</p>
+<p>Caso: {{ object.caso.nombre}}</p>
+<p>Integrantes:{{ object.integrantes}}</p>
+<p>PNF:{{ object.pnf}}</p>
+<p>Tutor:{{ object.responsable.nombre}}</p>
+<p>Año:{{ object.year}}</p>
+<p>Resumen:{{ object.resumen}}</p>
+<p>Estado:{{ object.estado}}</p>
+<p>Documento: <a id="pdf"  onclick="stopDefAction(event)" href="#">Click para abrir  </a></p>
+
+
+<script type="text/javascript">
+//preventDefault
+function stopDefAction(evt) {
+  evt.preventDefault();
+}
+
+
+
+// Function to print
+function print() {
+  window.open('../../media/{{ object.upload}}');
+ 
+}
+
+// Function to add event listener to pdf 
+function load() {
+  var pdf = document.getElementById("pdf");
+  pdf.addEventListener("click", print, false);
+}
+
+document.addEventListener("DOMContentLoaded", load, false);
+
+
+  
+  
+
+</script>
+
+
+
+
+            
+              
+
+        
+
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+          Footer
+        </div>
+        <!-- /.card-footer-->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+</div>
+
+
+
+
+{%endblock%}
+{%block scripts%}
+
+
+{%endblock%}
