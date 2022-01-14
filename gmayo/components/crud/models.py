@@ -62,7 +62,7 @@ class Proyecto(TimeStampMixin):
     
     
     pnf_choice = [
-        ("Adnunistracion", "Administracion"),
+        ("Administracion", "Administracion"),
         ("Contaduria Publica", 'Contaduria Publica'),
         ("Turismo", 'Turismo'),
         ("Agroalimentacion", 'Agroalimentacion'),
@@ -77,10 +77,11 @@ class Proyecto(TimeStampMixin):
 
    
 
-    pnf = models.CharField(
+    pnf = models.TextField(
         max_length=41,
         choices=pnf_choice,
         default="Aprobado",
+        verbose_name="Carrera",
         blank=True
     )
 
@@ -88,36 +89,37 @@ class Proyecto(TimeStampMixin):
 
 
     estado_choice = [
-        ("--------", "--------"),
         ("Aprobado", "Aprobado"),
         ("En curso", 'En curso'),
         ("Reprobado", 'Reprobado'),
-
     ]
 
 
    
 
-    estado = models.CharField(
-        max_length=10,
+    estado = models.TextField(
+        max_length=50,
         choices=estado_choice,
         default="Aprobado",
+        verbose_name="Estado",
+        blank=True
     )
 
     currentDateTime = datetime.datetime.now()
     date = currentDateTime.date()
     yearToday = date.strftime("%Y")
-    yearInt = int(yearToday)
+    yearInt = int(yearToday)+1
+    yearChoice =[(i, i) for i in range(2008, yearInt)]
+    
 
 
-
-    year = models.IntegerField(choices=[(i, i) for i in range(1984, yearInt)], blank=True)
+    year = models.IntegerField(choices=yearChoice, verbose_name="Año", blank=True)
     responsable = models.ForeignKey(Responsable, on_delete=models.CASCADE, verbose_name='Responsable', blank=True)
     caso = models.ForeignKey(Caso, on_delete=models.CASCADE, verbose_name='Caso')
-    resumen = models.CharField(max_length=300, verbose_name='Resumen', default='ninguno')
+    resumen = models.TextField(max_length=300, verbose_name='Resumen', default='ninguno')
 
-    integrantes = models.CharField(max_length=300, verbose_name='Integrantes', default='no disponible')
-    upload = models.FileField(upload_to='uploads/%Y/%m/%d/', blank=False, )
+    integrantes = models.TextField(max_length=300, verbose_name='Integrantes', default='no disponible')
+    upload = models.FileField(max_length=50,upload_to='uploads/%Y/%m/%d/', blank=False, )
 
     class Meta:
         verbose_name = 'Proyecto'

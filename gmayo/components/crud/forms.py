@@ -1,5 +1,5 @@
 from fileinput import FileInput
-
+from datetime import datetime
 from django.forms import *
 from components.crud.models import Proyecto, Caso, Responsable
 
@@ -26,6 +26,13 @@ class ProyectoForm(ModelForm):
                 attrs={
                     'required': True,
                 }
+                
+            ),
+              'estado': Select(
+                attrs={
+                    'required': True,
+                }
+                
             )
         }
 

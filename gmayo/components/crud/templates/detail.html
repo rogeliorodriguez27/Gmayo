@@ -21,15 +21,16 @@
 
      
 
-<p>Nombre: {{ object.nombre}}</p>
-<p>Caso: {{ object.caso.nombre}}</p>
-<p>Integrantes:{{ object.integrantes}}</p>
-<p>PNF:{{ object.pnf}}</p>
-<p>Tutor:{{ object.responsable.nombre}}</p>
-<p>Año:{{ object.year}}</p>
-<p>Resumen:{{ object.resumen}}</p>
-<p>Estado:{{ object.estado}}</p>
+<p id="nombre">Nombre: {{ object.nombre}}</p>
+<p id="caso">Caso: {{ object.caso.nombre}}</p>
+<p id="int">Integrantes:{{ object.integrantes}}</p>
+<p id="pnf">PNF:{{ object.pnf}}</p>
+<p id="tutor">Tutor:{{ object.responsable.nombre}}</p>
+<p id="year">Año:{{ object.year}}</p>
+<p id="resumen">Resumen:{{ object.resumen}}</p>
+<p id="estado">Estado:{{ object.estado}}</p>
 <p>Documento: <a id="pdf"  onclick="stopDefAction(event)" href="#">Click para abrir  </a></p>
+<a class="btnexp" onclick="stopDefAction(event)" href="#">Export PDF</a>
 
 
 <script type="text/javascript">
@@ -85,6 +86,48 @@ document.addEventListener("DOMContentLoaded", load, false);
 
 {%endblock%}
 {%block scripts%}
+<script>
+var doc = new jsPDF();
+function pdfexport(){
+  //variables
 
+  var nombreProyecto = document.getElementById('nombre').innerText,
+      casoProyecto = document.getElementById('caso').innerText,
+      intProyecto = document.getElementById('int').innerText,
+      pnfProyecto = document.getElementById('pnf').innerText,
+      tutorProyecto = document.getElementById('tutor').innerText,
+      yearProyecto = document.getElementById('year').innerText,
+      titulo = "Reporte Proyecto"
+
+
+  var x = 0, y = 0, z = 0, w = 0;
+
+  //jspdf part
+  var doc = new jsPDF();
+  //standard variables
+  var boldFont = doc.setFontStyle('bold'),
+      normalFont = doc.setFontStyle('normal');
+
+
+  //title
+  doc.setFontSize(22);
+  doc.text(tutulo, 60, 30);
+  //content
+  doc.setFontSize(10)
+  doc.setFontStyle('normal');
+  doc.text(nombreProyecto, 10, 60, {maxWidth: 80});
+  doc.text(casoProyecto, 10, 60, {maxWidth: 80});
+  doc.text(intProyecto, 10, 60, {maxWidth: 80});
+  doc.text(pnfProyecto, 10, 60, {maxWidth: 80});
+  doc.text(tutorProyecto, 10, 60, {maxWidth: 80});
+  doc.text(yearProyecto, 10, 60, {maxWidth: 80});
+
+ 
+   //info in redinfo
+
+  doc.output('dataurlnewwindow',{filename: "reporte"});
+}
+
+</script>
 
 {%endblock%}
