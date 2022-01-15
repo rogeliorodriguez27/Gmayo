@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'components.dashboard',
     'components.crud',
     'components.reportes',
+    'components.charts',
 
 
     'widget_tweaks',

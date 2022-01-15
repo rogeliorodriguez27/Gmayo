@@ -29,37 +29,10 @@
 <p id="year">Año:{{ object.year}}</p>
 <p id="resumen">Resumen:{{ object.resumen}}</p>
 <p id="estado">Estado:{{ object.estado}}</p>
-<p>Documento: <a id="pdf"  onclick="stopDefAction(event)" href="#">Click para abrir  </a></p>
-<a class="btnexp" onclick="stopDefAction(event)" href="#">Export PDF</a>
+<p>Documento: <a id="pdf"  onclick="stopDefAction(event)" href="{{ object.upload}}">Click para abrir  </a></p>
+<a class="btnexp" href="/report/detailProyecto/{{object.id}}" target="_blank">Export PDF</a>
 
 
-<script type="text/javascript">
-//preventDefault
-function stopDefAction(evt) {
-  evt.preventDefault();
-}
-
-
-
-// Function to print
-function print() {
-  window.open('../../media/{{ object.upload}}');
- 
-}
-
-// Function to add event listener to pdf 
-function load() {
-  var pdf = document.getElementById("pdf");
-  pdf.addEventListener("click", print, false);
-}
-
-document.addEventListener("DOMContentLoaded", load, false);
-
-
-  
-  
-
-</script>
 
 
 
@@ -86,48 +59,6 @@ document.addEventListener("DOMContentLoaded", load, false);
 
 {%endblock%}
 {%block scripts%}
-<script>
-var doc = new jsPDF();
-function pdfexport(){
-  //variables
 
-  var nombreProyecto = document.getElementById('nombre').innerText,
-      casoProyecto = document.getElementById('caso').innerText,
-      intProyecto = document.getElementById('int').innerText,
-      pnfProyecto = document.getElementById('pnf').innerText,
-      tutorProyecto = document.getElementById('tutor').innerText,
-      yearProyecto = document.getElementById('year').innerText,
-      titulo = "Reporte Proyecto"
-
-
-  var x = 0, y = 0, z = 0, w = 0;
-
-  //jspdf part
-  var doc = new jsPDF();
-  //standard variables
-  var boldFont = doc.setFontStyle('bold'),
-      normalFont = doc.setFontStyle('normal');
-
-
-  //title
-  doc.setFontSize(22);
-  doc.text(tutulo, 60, 30);
-  //content
-  doc.setFontSize(10)
-  doc.setFontStyle('normal');
-  doc.text(nombreProyecto, 10, 60, {maxWidth: 80});
-  doc.text(casoProyecto, 10, 60, {maxWidth: 80});
-  doc.text(intProyecto, 10, 60, {maxWidth: 80});
-  doc.text(pnfProyecto, 10, 60, {maxWidth: 80});
-  doc.text(tutorProyecto, 10, 60, {maxWidth: 80});
-  doc.text(yearProyecto, 10, 60, {maxWidth: 80});
-
- 
-   //info in redinfo
-
-  doc.output('dataurlnewwindow',{filename: "reporte"});
-}
-
-</script>
-
+<script src="/static/scripts/htmlActions.js"></script>
 {%endblock%}
