@@ -27,6 +27,6 @@ urlpatterns = [
     path("crud/", include("components.crud.urls")),
     path("dashboard/", include("components.dashboard.urls")),
     path("report/", include("components.reportes.urls")),
-    path('', RedirectView.as_view(url='/home')),
+    path('', RedirectView.as_view(url='/dashboard')),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
