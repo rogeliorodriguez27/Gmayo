@@ -1,10 +1,9 @@
 from django.urls import path
 
-from components.dashboard.views import home, contact
+from components.dashboard.views import home
 
 urlpatterns = [
    
     path('', home.as_view(), name='home'),
-    path("contacto/", contact.as_view(), name="contact"),
-
+    
 ]

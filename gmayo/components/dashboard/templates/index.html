@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
+    <link rel="shortcut icon" href="/static/images/icons/favicon.ico" type="image/x-icon">
     <title>Gmayo: Gestor de Proyectos</title>
 
     
@@ -15,6 +16,12 @@
 
     <!-- Bootstrap core CSS -->
 <link href="/static/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery -->
+<script src="/static/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
 
     <style>
       .bd-placeholder-img {
@@ -45,13 +52,15 @@
       <nav class="nav nav-masthead justify-content-center float-md-end">
 
         <a class="nav-link" id="pdf" onclick="stopDefAction(event)" href="uploads/2021/12/31/S5d1_p1n9Eev.pdf">Manual</a>
-        <a class="nav-link" href="/dashboard/contacto">Contacto</a>
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#modalContact">Contacto</a>
+      
+
       </nav>
     </div>
   </header>
 
   <main class="px-3">
-    <img src="/static/images/logo_1.png" alt="Gmayo" style="width:50%;">
+    <img src="/static/images/logo_2.png" alt="Gmayo" style="width:50%;">
     <p class="lead">EL <strong>G</strong>ESTOR DE PROYECTOS DE LA UNIVERSIDAD TERRITORIAL DELTAICA "FRANCISCO TA<strong>MAYO</strong>", ofrece una interfaz completa y amigable para el acceso a la información referente a los proyectos de la institución, junto a su informe correspondiente, además de estadísticas generales y periódicas.
 </p>
     <p class="lead">
@@ -62,6 +71,35 @@
   <footer class="mt-auto text-white-50">
     <p>Gmayo 2022</p>
   </footer>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modalContact" tabindex="-1" role="dialog" aria-labelledby="modalContactLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modalContactLabel" style="color: black; font-family: Arial, Helvetica, sans-serif;">Contacto</h5>
+          
+        </button>
+      </div>
+      <div class="modal-body modalTxt">
+        <h5>Ivanna Esteves</h5>
+        <p>ivannaesutd@gmail.com</p>
+        <h5>Moises Sanz</h5>
+        <p>moises442utd@gmail.com</p>
+        <h5>Rogelio Rodriguez</h5>
+        <p>rogeliorcd9@gmail.com</p>
+        <h5>Freddy Delgado</h5>
+        <p>freddyfac@gmail.com</p>
+        <h5>Vicente La Rosa</h5>
+        <p>chente0032020@gmail.com</p>
+        <h5>Nestor Perez</h5>
+        <p>pereznes2012@gmail.com</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-lg btn-primary fw-bold border-white bg-black" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+  </div>
 </div>
 
 
