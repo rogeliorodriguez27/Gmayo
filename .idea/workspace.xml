@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93c4285a-3a0f-4a5e-924d-58473c9972bd" name="Default Changelist" comment="individual report complete, about page complete, contact page in progress.">
+    <list default="true" id="93c4285a-3a0f-4a5e-924d-58473c9972bd" name="Default Changelist" comment="contact done, charts first lines">
       <change afterPath="$PROJECT_DIR$/.venv/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/Brotli-1.0.9.dist-info/INSTALLER" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.venv/Lib/site-packages/Brotli-1.0.9.dist-info/LICENSE" afterDir="false" />
@@ -6274,6 +6274,7 @@
       <change afterPath="$PROJECT_DIR$/gmayo/components/dashboard/templates/charts.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/gmayo/media/uploads/2022/01/17/cecufrat_ER.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gmayo/components/crud/templates/view.html" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/crud/templates/view.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gmayo/components/dashboard/templates/_contact.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gmayo/components/dashboard/templates/contact.html" beforeDir="false" />
@@ -6365,7 +6366,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642205098096</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="contact done, charts first lines">
+      <created>1642475727629</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1642475727629</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -6385,6 +6393,7 @@
     <MESSAGE value="Update model, crud complete, reprts in progress" />
     <MESSAGE value="genaral report complete" />
     <MESSAGE value="individual report complete, about page complete, contact page in progress." />
-    <option name="LAST_COMMIT_MESSAGE" value="individual report complete, about page complete, contact page in progress." />
+    <MESSAGE value="contact done, charts first lines" />
+    <option name="LAST_COMMIT_MESSAGE" value="contact done, charts first lines" />
   </component>
 </project>
