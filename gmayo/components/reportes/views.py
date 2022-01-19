@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, TemplateView
-#from weasyprint.fonts import FontConfiguration
-from weasyprint.text.fonts import FontConfiguration
+from weasyprint.fonts import FontConfiguration #wasypeint 52.5
+#from weasyprint.text.fonts import FontConfiguration #weasyprint 54
 from components.crud.models import Proyecto, Responsable
 from components.reportes.forms import reporteForm
 

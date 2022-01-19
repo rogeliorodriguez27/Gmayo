@@ -18,7 +18,103 @@
           </div>
         </div>
         <div class="card-body">
-          
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Estadistica  año {{year}}</h3>
+                  </div>
+                </div>
+                <div class="card-body">
+               
+                  <!-- /.d-flex -->
+                  <canvas id="myChartYear" width="400" height="400"></canvas>
+  
+                 
+                </div>
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col-md-6 -->
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Estadistica de proyectos aprobados</h3>
+                  </div>
+                </div>
+                <div class="card-body">
+                  
+                  <!-- /.d-flex -->
+                  <canvas id="myChart" width="400" height="400"></canvas>
+  
+                 
+                </div>
+              </div>
+            
+              <!-- /.card -->
+  
+              
+            </div>
+            <!-- /.col-md-6 -->
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Estadisticas año {{pastYear}}</h3>
+                  </div>
+                </div>
+                <div class="card-body">
+                  
+                  <!-- /.d-flex -->
+                  <canvas id="chartPastYear" width="400" height="400"></canvas>
+  
+                 
+                </div>
+              </div>
+            
+              <!-- /.card -->
+  
+              
+            </div>
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-header border-0">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Estadistica de proyectos por carrera: {{pnf}}</h3>
+                  </div>
+                
+                  <form method="POST" id="post-form"  >
+                    <div class="input-group">
+                    {% csrf_token %}
+                    {{ form.pnf }}
+        
+                    <div class="input-group-append">
+                    <button type="submit" class="btn btn-sm btn-primary fw-bold border-white bg-dark" ><i class="fas fa-search"></i></button>
+                    </div>
+                  
+                 
+                  </div>
+                  </form>
+        
+
+                </div>
+
+                <div class="card-body">
+                  
+                  <!-- /.d-flex -->
+                  <canvas id="chartPNF" width="400" height="400"></canvas>
+  
+                 
+                </div>
+              </div>
+            
+              <!-- /.card -->
+  
+              
+            </div>
+          </div>
         
         
 
@@ -43,6 +139,168 @@
 
 {%endblock%}
 {%block scripts%}
+<script src="/static/plugins/chartsjs/dist/chart.js"></script>
+<script>
+  // Estadistica ultimos dos años
+  const data1 = {{proyectAproved}},
+   data2 = {{proyectYearInCourseAproved}},
+   data3 = {{proyectPastYearAproved}},
+   fullData = [data1, data2,data3],
+   label1 = {{year}},
+   label2 = {{pastYear}},
+   label3 = "Todos",
+   fullLabels = [label3,label2,label1];
+    const ctx = document.getElementById('myChart');
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: fullLabels,
+        datasets: [{
+            label: '# de proyectos aprobados',
+            data: fullData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+<script>
+  // Estadistica año en curso
+  const data4 = {{proyectYearInCourseAproved}},
+   data5 = {{proyectYearInCourseNotAproved}},
+   data6 = {{proyectYearInCourseInCourse}};
+ const fullData2 = [data4, data5,data6];
+  const ctx2 = document.getElementById('myChartYear');
+const myChartYear = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: ["Aprobados","Reprobados","En Curso" ],
+        datasets: [{
+            label: '# de proyectos',
+            data: fullData2,
+            backgroundColor: [
+                'rgba(240, 120, 132, 0.2)',
+                'rgba(54, 1, 235, 0.2)',
+                'rgba(25, 106, 86, 0.2)',
+                
+            ],
+            borderColor: [
+            'rgba(240, 10, 160, 0.2)',
+                'rgba(54, 1, 200, 0.2)',
+                'rgba(25, 136, 86, 0.2)',
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
 
+
+</script>
+<script>
+  // Estadistica año anterior
+  const data7 = {{proyectPastYearAproved}},
+   data8 = {{proyectPastYearNotAproved}},
+   data9 = {{proyectPastYearInCourse}};
+ const fullData3 = [data7, data8,data9];
+  const ctx3 = document.getElementById('chartPastYear');
+const chartPastYear = new Chart(ctx3, {
+    type: 'bar',
+    data: {
+        labels: ["Aprobados","Reprobados","En Curso" ],
+        datasets: [{
+            label: '# de proyectos',
+            data: fullData3,
+            backgroundColor: [
+                'rgba(255, 50, 132, 0.2)',
+                'rgba(54, 10, 200, 0.2)',
+                'rgba(25, 206, 86, 0.2)',
+                
+            ],
+            borderColor: [
+            'rgba(255, 10, 160, 0.2)',
+                'rgba(54, 20, 255, 0.2)',
+                'rgba(25, 136, 86, 0.2)',
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+</script>
+<script>
+  // Estadistica por pnf
+  const data10 = {{proyectPnfAproved}},
+   data11 = {{proyectPnfNotAproved}},
+   data12 = {{proyectPnfInCourse}};
+ const fullData4 = [data10, data11,data12];
+  const ctx4 = document.getElementById('chartPNF');
+const chartPNF = new Chart(ctx4, {
+    type: 'bar',
+    data: {
+        labels: ["Aprobados","Reprobados","En Curso" ],
+        datasets: [{
+            label: '# de proyectos',
+            data: fullData4,
+            backgroundColor: [
+                'rgba(240, 120, 1, 0.2)',
+                'rgba(144, 1, 150, 0.2)',
+                'rgba(25, 106, 186, 0.2)',
+                
+            ],
+            borderColor: [
+            'rgba(240, 100, 160, 0.2)',
+                'rgba(54, 1, 200, 0.2)',
+                'rgba(25, 136, 86, 0.2)',
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+</script>
 
 {%endblock%}

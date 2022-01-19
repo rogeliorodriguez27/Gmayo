@@ -68,7 +68,7 @@ class Proyecto(TimeStampMixin):
         ("Agroalimentacion", 'Agroalimentacion'),
         ("Informatica", 'Informatica'),
         ("Construccion Civil", 'Construccion Civil'),
-        ("Procesamiento y Distribucion de alimentos", 'Procesamiento y Distribucion de alimentos'),
+        ("Procesamiento y Distribucion de alimentos", 'Procesamiento y Dist. de alimentos'),
         ("Terapia Ocupacional", 'Terapia Ocupacional'),
         ("Fisioterapia", 'Fisioterapia'),
     
