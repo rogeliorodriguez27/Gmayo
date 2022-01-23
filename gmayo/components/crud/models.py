@@ -51,33 +51,39 @@ class Caso(models.Model):
     def __str__(self):
         return self.nombre
 
-class Carrera(models.Model):
-   
-
-
-   
-
-    nombre = models.TextField(
-        max_length=41,
-        
-        
-        verbose_name="Carrera",
-        blank=True
-    )
-
-
-    
-    
-    def __str__(self):
-        return self.nombre
-
+    class Meta:
+       verbose_name = 'Ubicacion'
+       verbose_name_plural = 'Ubicaciones'
+       ordering = ['id']
 
 
 class Proyecto(TimeStampMixin):
     nombre = models.CharField(max_length=200, verbose_name='Nombre')
     
     
+    pnf_choice = [
+        ("Administracion", "Administracion"),
+        ("Contaduria Publica", 'Contaduria Publica'),
+        ("Turismo", 'Turismo'),
+        ("Agroalimentacion", 'Agroalimentacion'),
+        ("Informatica", 'Informatica'),
+        ("Construccion Civil", 'Construccion Civil'),
+        ("Procesamiento y Distribucion de alimentos", 'Procesamiento y Dist. de alimentos'),
+        ("Terapia Ocupacional", 'Terapia Ocupacional'),
+        ("Fisioterapia", 'Fisioterapia'),
     
+    ]
+
+
+   
+
+    pnf = models.TextField(
+        max_length=41,
+        choices=pnf_choice,
+        default="Aprobado",
+        verbose_name="Carrera",
+        blank=True
+    )
 
 
 
@@ -110,7 +116,6 @@ class Proyecto(TimeStampMixin):
     year = models.IntegerField(choices=yearChoice, verbose_name="Año", blank=True)
     responsable = models.ForeignKey(Responsable, on_delete=models.CASCADE, verbose_name='Responsable', blank=True)
     caso = models.ForeignKey(Caso, on_delete=models.CASCADE, verbose_name='Caso')
-    pnf = models.ForeignKey(Carrera, on_delete=models.CASCADE, verbose_name='Caso')
     resumen = models.TextField(max_length=300, verbose_name='Resumen', default='ninguno')
 
     integrantes = models.TextField(max_length=300, verbose_name='Integrantes', default='no disponible')
@@ -121,23 +126,3 @@ class Proyecto(TimeStampMixin):
         verbose_name_plural = 'Proyectos'
         ordering = ['id']
 
-
-
-
-if Carrera.objects.all().count() == 0 :
-    ad = Carrera(nombre="Administración")
-    ad.save()
-    ag = Carrera(nombre="Agroalimentación")
-    ag.save()
-    cp = Carrera(nombre="Contaduria Pública")
-    cp.save()
-    ft = Carrera(nombre="Fisioterapia")
-    ft.save()
-    inf = Carrera(nombre="Informática")
-    inf.save()
-    pda = Carrera(nombre="Procesamiento y Dist. de alimentos")
-    pda.save()
-    to = Carrera(nombre="Terapia Ocupacional")
-    to.save()
-    tu = Carrera(nombre="Turismo")
-    tu.save()
