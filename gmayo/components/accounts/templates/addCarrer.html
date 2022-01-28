@@ -18,29 +18,18 @@
           </div>
         </div>
         <div class="card-body">
-
-     
-
-<p id="nombre">Nombre: {{ object.nombre}}</p>
-<p id="caso">Caso: {{ object.caso.nombre}}</p>
-<p id="int">Integrantes:{{ object.integrantes}}</p>
-<p id="pnf">PNF:{{ object.pnf}}</p>
-<p id="tutor">Tutor:{{ object.responsable.nombre}}</p>
-<p id="year">Año:{{ object.year}}</p>
-<p id="resumen">Resumen:{{ object.resumen}}</p>
-<p id="estado">Estado:{{ object.estado}}</p>
-<p>Documento: <a id="pdf"  onclick="stopDefAction(event)" href="{{ object.upload}}">Click para abrir  </a></p>
-<a class="btnexp" href="/report/detailProyecto/{{object.id}}" target="_blank">Export PDF</a>
-
-
-
-
-
-
+          
             
-              
+          
+            <form method="POST" id="post-form" style="width:60%; margin:auto;" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Enviar</button>
+          
+         
+          
 
-        
+          </form>
 
         </div>
         <!-- /.card-body -->
@@ -57,8 +46,4 @@
 
 
 
-{%endblock%}
-{%block scripts%}
-
-<script src="/static/scripts/htmlActions.js"></script>
 {%endblock%}

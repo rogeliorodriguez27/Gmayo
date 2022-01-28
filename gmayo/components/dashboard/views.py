@@ -1,6 +1,8 @@
 from django import dispatch
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
 from django.views.generic.base import TemplateView
 from datetime import date, datetime, timezone
 
@@ -33,6 +35,7 @@ class charts(TemplateView):
     proyectPastYear = Proyecto.objects.filter(year=(yearInt-1))
     filtro = Proyecto.objects.all()
 
+    @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 

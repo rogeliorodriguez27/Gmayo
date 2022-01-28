@@ -22,8 +22,14 @@
           {% if request.resolver_match.view_name == 'reportProyecto' %}
           <form method="POST"  id="post-form" style="width:60%; margin:auto;">
             {% csrf_token %}
-           
-           {{ form }}
+           {{ form.pnf.label }}
+           {{ form.pnf }}
+            {{ form.responsable.label }}
+            {{ form.responsable }}
+            {{ form.years.label }}
+            {{ form.years }}
+            {{ form.estado.label }}
+            {{ form.estado }}
 
 
     <button type="submit">Enviar</button>
@@ -55,7 +61,7 @@
               <tr>
 
                 <td>{{ proyecto.nombre}}</td>
-                <td>{{ proyecto.pnf.nombre}}</td>
+                <td>{{ proyecto.pnf}}</td>
                 <td>{{ proyecto.integrantes}}</td>
                 <td>{{ proyecto.responsable.nombre}}</td>
                 <td>{{ proyecto.year}}</td>

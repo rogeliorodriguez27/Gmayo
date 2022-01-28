@@ -1,18 +1,15 @@
 from django.shortcuts import render
 from django.views.generic import ListView, TemplateView
-#from weasyprint.fonts import FontConfiguration #wasypeint 52.5
-from weasyprint.text.fonts import FontConfiguration #weasyprint 54
+from weasyprint.fonts import FontConfiguration  # wasypeint 52.5
+# from weasyprint.text.fonts import FontConfiguration #weasyprint 54
 from components.crud.models import Proyecto, Responsable
 from components.reportes.forms import reporteForm
 
-
-
-#report
-from django.http import HttpResponse
+# report
+from django.http import HttpResponse, request
 from django.template.loader import render_to_string
 from weasyprint import HTML
 import tempfile
-
 
 
 # Create your views here.
@@ -20,8 +17,22 @@ import tempfile
 class ReporteProyectosListView(ListView):
     model = Proyecto
     template_name = "view.html"
-    form_class = reporteForm  
-    filtro = Proyecto.objects.all()
+    form_class = reporteForm
+
+    def get_rol(self):
+        current_user = self.request.user
+
+        rol = current_user.rol
+        rol = str(rol)
+        if rol == "ADMINISTRADOR":
+            rol == ""
+        return rol
+
+    def filterQuery(self):
+        filtro = Proyecto.objects.filter(pnf=self.get_rol())
+        return filtro
+
+
 
 
     def get_context_data(self, **kwargs):
@@ -32,7 +43,7 @@ class ReporteProyectosListView(ListView):
         context["pnf"] = "Todos"
         context["estado"] = "Todos"
         context["year"] = "Todos"
-
+        context["object_list"] = self.filterQuery()
 
         return context
 
@@ -42,104 +53,103 @@ class ReporteProyectosListView(ListView):
             year = form.cleaned_data['years']
             responsable = form.cleaned_data['responsable']
             estado = form.cleaned_data['estado']
-            pnf = form.cleaned_data["pnf"]
+            pnf = self.get_rol()
 
-
-            if estado == "" and responsable == None and year =="0" and pnf == "" :
+            if estado == "" and responsable == None and year == "0" and pnf == "":
                 filtro = Proyecto.objects.all()
                 print(1)
-                
-                
-            elif estado != "" and responsable !=None and year !="0" and pnf != "" :
-                filtro = Proyecto.objects.filter(responsable=responsable).filter(pnf=pnf).filter(year=year).filter(estado=estado)
-                print(12)
-            
 
-            elif estado == "" and year =="0" and pnf =="" :
+
+            elif estado != "" and responsable != None and year != "0" and pnf != "":
+                filtro = Proyecto.objects.filter(responsable=responsable).filter(pnf=pnf).filter(year=year).filter(
+                    estado=estado)
+                print(12)
+
+
+            elif estado == "" and year == "0" and pnf == "":
                 filtro = Proyecto.objects.filter(responsable=responsable)
                 print(13)
-            
-            elif responsable == None and year =="0" and pnf =="" :
+
+            elif responsable == None and year == "0" and pnf == "":
                 filtro = Proyecto.objects.filter(estado=estado)
                 print(14)
-            
-            elif estado == "" and responsable ==None and pnf =="" :
+
+            elif estado == "" and responsable == None and pnf == "":
                 filtro = Proyecto.objects.filter(year=year)
                 print(15)
-          
-            elif estado == "" and year =="0" and responsable ==None :
+
+            elif estado == "" and year == "0" and responsable == None:
                 filtro = Proyecto.objects.filter(pnf=pnf)
                 print(16)
-          
 
 
 
-            elif estado == "" and year =="0" :
+
+            elif estado == "" and year == "0":
                 filtro = Proyecto.objects.filter(responsable=responsable).filter(pnf=pnf)
                 print(17)
-          
-            elif responsable == None and year =="0" :
+
+            elif responsable == None and year == "0":
                 filtro = Proyecto.objects.filter(estado=estado).filter(pnf=pnf)
                 print(18)
-          
-            elif pnf == "" and year =="0" :
+
+            elif pnf == "" and year == "0":
                 filtro = Proyecto.objects.filter(responsable=responsable).filter(estado=estado)
                 print(19)
-          
-            elif estado == "" and responsable ==None :
+
+            elif estado == "" and responsable == None:
                 filtro = Proyecto.objects.filter(year=year).filter(pnf=pnf)
                 print(100)
-          
-            elif estado == "" and pnf =="" :
+
+            elif estado == "" and pnf == "":
                 filtro = Proyecto.objects.filter(responsable=responsable).filter(year=year)
                 print(101)
-          
-            elif responsable == None and pnf =="" :
+
+            elif responsable == None and pnf == "":
                 filtro = Proyecto.objects.filter(year=year).filter(estado=estado)
                 print(102)
-          
 
-            
-            
-            elif year == "0" :
+
+
+
+            elif year == "0":
                 filtro = Proyecto.objects.filter(responsable=responsable).filter(pnf=pnf).filter(estado=estado)
                 print(103)
-          
+
             elif pnf == "" or pnf == "---------":
                 filtro = Proyecto.objects.filter(responsable=responsable).filter(year=year).filter(estado=estado)
                 print(104)
-          
-            elif responsable == None :
+
+            elif responsable == None:
                 filtro = Proyecto.objects.filter(pnf=pnf).filter(year=year).filter(estado=estado)
                 print(105)
-          
 
 
 
-            elif estado == "" :
+
+            elif estado == "":
                 filtro = Proyecto.objects.filter(responsable=responsable).filter(pnf=pnf).filter(year=year)
                 print(106)
-        
+
 
             else:
                 filtro = Proyecto.objects.all()
-            
-            if estado =="":
+
+            if estado == "":
                 estado = "Todos"
 
-            if responsable ==None:
+            if responsable == None:
                 responsable = "Todos"
-            if year =="0":
+            if year == "0":
                 year = "Todos"
-            if pnf =="":
+            if pnf == "":
                 pnf = "Todas"
-            
-            
 
-            return render(request, self.template_name, {'object_list': filtro, "title":"Proyectos Registrados", "form":reporteForm, "year":year, "estado":estado, "responsable":responsable, "pnf":pnf},  )
-        return render(request, self.template_name, {'object_list': self.filtro, "title":"Proyectos Registrados", "form":reporteForm},  )
-
-
+            return render(request, self.template_name,
+                          {'object_list': filtro, "title": "Proyectos Registrados", "form": reporteForm, "year": year,
+                           "estado": estado, "responsable": responsable, "pnf": pnf}, )
+        return render(request, self.template_name,
+                      {'object_list': self.filtro, "title": "Proyectos Registrados", "form": reporteForm}, )
 
 
 def generate_pdf(request, pk):
@@ -157,9 +167,3 @@ def generate_pdf(request, pk):
     HTML(string=html).write_pdf(response, font_config=font_config)
 
     return response
-
-
-
-
-
-    
