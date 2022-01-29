@@ -8,10 +8,8 @@ from django.views.generic import CreateView, ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, UpdateView
 
-from components.crud.forms import ProyectoForm, ResponsableForm, CasoForm
+from components.crud.forms import ProyectoForm, ResponsableForm, CasoForm, ProyectoFormForNonSuperUser
 from components.crud.models import Proyecto, Caso, Responsable
-
-
 
 
 
@@ -19,7 +17,7 @@ class ProyectosCreateView(CreateView):
     model = Proyecto
     form_class = ProyectoForm
     template_name = 'create.html'
-    success_url = reverse_lazy('newResponsable')
+    success_url = reverse_lazy('reportProyecto')
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
@@ -28,7 +26,27 @@ class ProyectosCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Añadir  un Proyecto'
+        context['title'] = 'Gmayo: Añadir  un Proyecto'
+        context['title2'] = 'Proyectos'
+        context['cardTitle'] = 'Añadir un Proyecto'
+        return context
+
+class ProyectosCreateViewForNonSuperUser(CreateView):
+    model = Proyecto
+    form_class = ProyectoFormForNonSuperUser
+    template_name = 'create.html'
+    success_url = reverse_lazy('reportProyecto')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Gmayo: Añadir  un Proyecto'
+        context['title2'] = 'Proyectos'
+        context['cardTitle'] = 'Añadir un Proyecto'
         return context
 
 
@@ -36,7 +54,7 @@ class ResponsableCreateView(CreateView):
     model = Responsable
     form_class = ResponsableForm
     template_name = 'create.html'
-    success_url = reverse_lazy('newProyect')
+    success_url = reverse_lazy('responsables')
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
@@ -46,7 +64,10 @@ class ResponsableCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Añadir  un Responsable'
+        context['title'] = 'Gmayo: Añadir  un Docente'
+        context['title2'] = 'Docentes'
+        context['cardTitle'] = 'Añadir un Docente'
+
         return context
 
 
@@ -54,7 +75,7 @@ class CasoCreateView(CreateView):
     model = Caso
     form_class = CasoForm
     template_name = 'create.html'
-    success_url = reverse_lazy('newResponsable')
+    success_url = reverse_lazy('casos')
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
@@ -65,6 +86,9 @@ class CasoCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Añadir  una Caso'
+        context['title2'] = 'Casos'
+        context['cardTitle'] = 'Añadir un Caso'
+
         return context
 
 
@@ -81,9 +105,18 @@ class ProyectosListView(ListView):
 
         return context
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+
 class CasosListView(ListView):
     model = Caso
     template_name = "view.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -96,6 +129,10 @@ class CasosListView(ListView):
 class ResponsableListView(ListView):
     model = Responsable
     template_name = "view.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -111,6 +148,10 @@ class ProyectosUpdateView(UpdateView):
 
     template_name = "create.html"
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Editar Proyecto'
@@ -122,6 +163,10 @@ class CasosUpdateView(UpdateView):
     success_url = reverse_lazy('casos')
 
     template_name = "create.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -135,6 +180,10 @@ class ResponsableUpdateView(UpdateView):
 
     template_name = "create.html"
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Editar Responsable'
@@ -143,9 +192,13 @@ class ResponsableUpdateView(UpdateView):
 class ProyectosDeleteView(DeleteView):
     model = Proyecto
     
-    success_url = reverse_lazy('proyectos')
+    success_url = reverse_lazy('reportProyecto')
 
     template_name = "create.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -160,6 +213,10 @@ class CasosDeleteView(DeleteView):
 
     template_name = "create.html"
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Eliminar Caso'
@@ -170,6 +227,10 @@ class ResponsableDeleteView(DeleteView):
     success_url = reverse_lazy('responsables')
 
     template_name = "create.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -182,3 +243,8 @@ class ResponsableDeleteView(DeleteView):
 class ProyectoDetailView(DetailView):
     model = Proyecto
     template_name = "detail.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+

@@ -2,10 +2,11 @@ from django.urls import path
 from django.views.generic.edit import BaseUpdateView
 
 
-from .views import CasosDeleteView, CasosListView, CasosUpdateView, ProyectosCreateView, ProyectosDeleteView, ProyectosUpdateView, ResponsableCreateView, CasoCreateView, ProyectosListView, ResponsableDeleteView, ResponsableListView, ResponsableUpdateView, ProyectoDetailView
+from .views import CasosDeleteView, CasosListView, CasosUpdateView, ProyectosCreateViewForNonSuperUser, ProyectosCreateView, ProyectosDeleteView, ProyectosUpdateView, ResponsableCreateView, CasoCreateView, ProyectosListView, ResponsableDeleteView, ResponsableListView, ResponsableUpdateView, ProyectoDetailView
 
 urlpatterns = [
     path('agregar/', ProyectosCreateView.as_view(), name='newProyect'),
+    path('agregarProyecto/', ProyectosCreateViewForNonSuperUser.as_view(), name='newProyect'),
     path('agregarCaso/', CasoCreateView.as_view(), name='newCase'),
     path('agregarResponsable/', ResponsableCreateView.as_view(), name='newResponsable'),
 

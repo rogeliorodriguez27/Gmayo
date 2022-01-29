@@ -1,44 +1,72 @@
 {%extends "body.html"%}
+{% load widget_tweaks %}
+
 {%block content%}
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
       <!-- Default box -->
-      <div class="card">
+                {% if request.resolver_match.view_name == 'reportProyecto' %}
+      <div class="card collapsed-card" >
         <div class="card-header">
-          <h3 class="card-title">Title</h3>
+          <h3 class="card-title">Filtrar Proyectos</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-              <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-              <i class="fas fa-times"></i>
+              <i class="fas fa-plus"></i>
             </button>
           </div>
         </div>
         <div class="card-body">
           
-          {% if request.resolver_match.view_name == 'reportProyecto' %}
           <form method="POST"  id="post-form" style="width:60%; margin:auto;">
             {% csrf_token %}
+            {%if request.user.rol != "ADMINISTRADOR" %}
+
+           {{ form.pnf.label }}
+           {{ form.pnf|attr:"readonly:readonly" }}
+            {%endif%}
+            {%if request.user.rol == "ADMINISTRADOR" %}
+
            {{ form.pnf.label }}
            {{ form.pnf }}
+            {%endif%}
+
             {{ form.responsable.label }}
             {{ form.responsable }}
             {{ form.years.label }}
             {{ form.years }}
+            {{ form.trayecto.label }}
+            {{ form.trayecto }}
             {{ form.estado.label }}
             {{ form.estado }}
+            {{form.errors}}
 
+              <button type="submit" class="btn btn-sm btn-primary btn-lg btn-block fw-bold border-white bg-dark" ><i class="fas fa-search"></i></button>
 
-    <button type="submit">Enviar</button>
                  </form>
 
 
                 
 
-          {%endif%}
+
+
+
+
+        </div>
+        <!-- /.card-body -->
+
+      </div>
+      {%endif%}
+        <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{title3}}</h3>
+
+
+        </div>
+        <div class="card-body">
+
+
 
           <table id="table" class="display" style="width:100%">
             <thead>
@@ -47,6 +75,7 @@
                 <th>Carrera</th>
                 <th>Integrantes</th>
                 <th>Tutor</th>
+                <th>Trayecto</th>
                 <th>Año</th>
                 <th>Estado</th>
                 <th>Opciones</th>
@@ -64,10 +93,11 @@
                 <td>{{ proyecto.pnf}}</td>
                 <td>{{ proyecto.integrantes}}</td>
                 <td>{{ proyecto.responsable.nombre}}</td>
+                <td>{{ proyecto.trayecto}}</td>
                 <td>{{ proyecto.year}}</td>
-                
+
                 <td>{{ proyecto.estado}}</td>
-                
+
                 <td>
                   <a href="{% url 'editProyect' proyecto.id%}" class="btn btn-warning btn-xs btn-flat"><i
                       class="fas fa-edit"></i></a>
@@ -90,13 +120,7 @@
 
         </div>
         <!-- /.card-body -->
-        <div class="card-footer">
-          Footer
 
-         
-
-
-        </div>
         <!-- /.card-footer-->
       </div>
       <!-- /.card -->
@@ -111,14 +135,29 @@
 {%block scripts%}
 <script type="text/javascript" src="/static/plugins/datatables/datatables.min.js"></script>
 <script>
+
   $(document).ready(function () {
+
     $('#table').DataTable({
+     language: {
+            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "emptyTable": "Ningún dato disponible en esta tabla",
+"paginate": {
+        "first": "Primero",
+        "last": "Último",
+        "next": "Siguiente",
+        "previous": "Anterior"
+    },
+        "search": "Buscar:",
+
+        },
       responsive: true,
      dom: 'Bfrtip',
           buttons: [{
             extend: 'pdfHtml5',
             exportOptions: {
-              columns: [0,1,2,3,4,5]},
+              columns: [0,1,2,3,4,5,6]},
             text: 'PDF',
             customize: function ( doc ) {
 
@@ -129,7 +168,7 @@
                 doc.content.splice( 1, 0, {
                     margin: [ 0, 0, 0, 12 ],
                     alignment: 'center',
-                    text:"Año: {{year}} Reponsable: {{responsable}} Estado: {{estado}} Carrera: {{pnf}} ",
+                    text:"Trayecto {{trayecto}} Año: {{year}} Reponsable: {{responsable}} Estado: {{estado}} Carrera: {{pnf}} ",
                 } 
                 
                 

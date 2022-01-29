@@ -1,34 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93c4285a-3a0f-4a5e-924d-58473c9972bd" name="Default Changelist" comment="contact done, charts first lines">
-      <change afterPath="$PROJECT_DIR$/gmayo/components/accounts/templates/addCarrer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gmayo/media/uploads/2022/01/26/AuditoriadeSistemasCastello.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gmayo/media/uploads/2022/01/26/S5d1.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gmayo/media/uploads/2022/01/26/S5d1_Gwz14lD.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gmayo/media/uploads/2022/01/28/S5d1.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gmayo/media/uploads/2022/01/28/S5d1_xAO6CFF.pdf" afterDir="false" />
+    <list default="true" id="93c4285a-3a0f-4a5e-924d-58473c9972bd" name="Default Changelist" comment="new user model , filtering related to  user rol">
+      <change afterPath="$PROJECT_DIR$/gmayo/components/accounts/migrations/0002_alter_customuser_rol.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gmayo/components/crud/migrations/0002_auto_20220129_0151.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gmayo/components/crud/migrations/0003_auto_20220129_2144.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gmayo/media/uploads/2022/01/29/AuditoriadeSistemasCastello.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gmayo/media/uploads/2022/01/29/AuditoriadeSistemas_jhYES3k.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gmayo/media/uploads/2022/01/29/Gmayo_Proyectos_reg_tITG4uS.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gmayo/media/uploads/2022/01/29/Gmayo_Proyectos_registrados.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gmayo/media/uploads/2022/01/29/S5d1.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gmayo/media/uploads/2022/01/29/iamgen_03.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gmayo/media/uploads/2022/01/29/iamgen_03_nUoQEwo.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gmayo/media/uploads/2022/01/29/iamgen_03_oRo3qR2.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gmayo/media/uploads/2022/01/29/unidad_03.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gmayo/media/uploads/2022/01/29/unidad_03_rBPbrZ1.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gmayo/components/accounts/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/accounts/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gmayo/components/accounts/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/accounts/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gmayo/components/accounts/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/accounts/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gmayo/components/accounts/migrations/0002_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gmayo/components/accounts/migrations/0003_alter_usuario_pnf.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gmayo/components/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/accounts/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/components/accounts/templates/addCarrer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/components/accounts/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/accounts/templates/registration/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gmayo/components/accounts/templates/registration/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/accounts/templates/registration/signup.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gmayo/components/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/accounts/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gmayo/components/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/accounts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gmayo/components/crud/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/crud/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gmayo/components/crud/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/crud/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/components/charts/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/components/charts/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/components/charts/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/components/charts/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/components/charts/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/components/charts/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/components/charts/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/components/charts/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/components/crud/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/crud/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gmayo/components/crud/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/crud/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/components/crud/templates/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/crud/templates/create.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gmayo/components/crud/templates/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/crud/templates/detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gmayo/components/crud/templates/view.html" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/crud/templates/view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gmayo/components/dashboard/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/dashboard/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/components/crud/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/crud/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/components/crud/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/crud/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/components/dashboard/templates/charts.html" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/dashboard/templates/charts.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gmayo/components/dashboard/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/dashboard/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/components/reportes/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/reportes/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gmayo/components/reportes/templates/detReporte.html" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/reportes/templates/detReporte.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gmayo/components/reportes/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/components/reportes/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gmayo/gmayo/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/gmayo/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gmayo/gmayo/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/gmayo/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/templates/body.html" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/templates/body.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/templates/fixed-sidebar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gmayo/templates/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/gmayo/templates/sidebar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642475727629</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="new user model , filtering related to  user rol">
+      <created>1643387294066</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1643387294066</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -139,6 +163,7 @@
     <MESSAGE value="genaral report complete" />
     <MESSAGE value="individual report complete, about page complete, contact page in progress." />
     <MESSAGE value="contact done, charts first lines" />
-    <option name="LAST_COMMIT_MESSAGE" value="contact done, charts first lines" />
+    <MESSAGE value="new user model , filtering related to  user rol" />
+    <option name="LAST_COMMIT_MESSAGE" value="new user model , filtering related to  user rol" />
   </component>
 </project>

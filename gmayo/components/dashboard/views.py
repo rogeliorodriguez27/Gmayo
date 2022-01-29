@@ -19,6 +19,7 @@ class home(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
        # context['latest_articles'] = Article.objects.all()[:5]
+
         return context
 
 
@@ -62,7 +63,8 @@ class charts(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
+        context['title'] = "Gmayo: Bienvenido"
+        context['title2'] = "Estadística"
         context['year'] = self.yearInt
         context['pastYear'] = self.yearInt-1
         context['form'] = chartForm
