@@ -6,17 +6,9 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Title</h3>
+          <h3 class="card-title">{{cardTitle}}</h3>
 
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-              <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-              <i class="fas fa-times"></i>
-            </button>
           </div>
-        </div>
         <div class="card-body">
 
      
@@ -24,14 +16,14 @@
 <p id="nombre">Nombre: {{ object.nombre}}</p>
 <p id="caso">Caso: {{ object.caso.nombre}}</p>
 <p id="int">Integrantes:{{ object.integrantes}}</p>
-<p id="pnf">PNF:{{ object.pnf}}</p>
+<p id="pnf">Carrera: Programa Nacional de Formación en {{ object.pnf}}</p>
 <p id="tutor">Tutor:{{ object.responsable.nombre}}</p>
-<p id="trayecto">Año:{{ object.trayecto}}</p>
+<p id="trayecto">Trayecto:{{ object.trayecto}}</p>
             <p id="year">Año:{{ object.year}}</p>
 <p id="resumen">Resumen:{{ object.resumen}}</p>
 <p id="estado">Estado:{{ object.estado}}</p>
-<p>Documento: <a id="pdf"  onclick="stopDefAction(event)" href="{{ object.upload}}">Click para abrir  </a></p>
-<a class="btnexp" href="/report/detailProyecto/{{object.id}}" target="_blank">Export PDF</a>
+<p><a id="pdf"  class="btn btn-primary" onclick="stopDefAction(event)" href="{{ object.upload}}">                    <i class="far fa-newspaper"></i>
+Visualizar Informe  </a></p>
 
 
 
@@ -46,7 +38,8 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
-          Footer
+          <a class="btnexp btn btn-secondary btn-lg btn-block" href="/report/detailProyecto/{{object.id}}" target="_blank">Generar Reporte</a>
+
         </div>
         <!-- /.card-footer-->
       </div>

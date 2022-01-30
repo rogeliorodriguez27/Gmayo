@@ -85,7 +85,7 @@ class CasoCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Añadir  una Caso'
+        context['title'] = 'Gmayo: Añadir  una Caso'
         context['title2'] = 'Casos'
         context['cardTitle'] = 'Añadir un Caso'
 
@@ -94,20 +94,7 @@ class CasoCreateView(CreateView):
 
 
 
-class ProyectosListView(ListView):
-    model = Proyecto
-    template_name = "view.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Proyectos registrados'
-
-
-        return context
-
-    @method_decorator(login_required)
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
 
 
 class CasosListView(ListView):
@@ -120,8 +107,11 @@ class CasosListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Casos registrados'
-
+        context['title'] = 'Gmayo: Casos registrados'
+        context['urlEdit'] = 'edit_caso'
+        context['urlDelete'] = 'delete_caso'
+        context['title2'] = 'Casos'
+        context['cardTitle'] = 'Casos Registrados'
 
         return context
 
@@ -136,15 +126,18 @@ class ResponsableListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Responsables registrados'
-
+        context['title'] = 'Gmayo: Responsables registrados'
+        context['urlEdit'] = 'edit_responsable'
+        context['urlDelete'] = 'delete_responsable'
+        context['title2'] = 'Responsables'
+        context['cardTitle'] = 'Responsables registrados'
 
         return context
 
 class ProyectosUpdateView(UpdateView):
     model = Proyecto
     form_class = ProyectoForm
-    success_url = reverse_lazy('proyectos')
+    success_url = reverse_lazy('reportProyecto')
 
     template_name = "create.html"
 
@@ -154,7 +147,9 @@ class ProyectosUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Editar Proyecto'
+        context['title'] = 'Gmayo: Editar Proyecto'
+        context['title2'] = 'Proyectos'
+        context['cardTitle'] = 'Editar Proyecto'
         return context
 
 class CasosUpdateView(UpdateView):
@@ -170,7 +165,10 @@ class CasosUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Editar Caso'
+        context['title'] = 'Gmayo: Editar Caso'
+        context['title2'] = 'Casos'
+        context['cardTitle'] = 'Editar Caso'
+
         return context
 
 class ResponsableUpdateView(UpdateView):
@@ -186,7 +184,10 @@ class ResponsableUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Editar Responsable'
+        context['title'] = 'Gmayo: Editar Responsable'
+        context['title2'] = 'Responsable'
+        context['cardTitle'] = 'Editar Responsable'
+
         return context
 
 class ProyectosDeleteView(DeleteView):
@@ -204,6 +205,9 @@ class ProyectosDeleteView(DeleteView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Eliminar Proyecto'
         context['text'] = 'Esta seguro de que desea eliminar '
+        context['title2'] = 'Proyectos'
+        context['cardTitle'] = 'Eliminar Proyecto'
+
         return context
 
 class CasosDeleteView(DeleteView):
@@ -220,6 +224,10 @@ class CasosDeleteView(DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Eliminar Caso'
+        context['text'] = 'Esta seguro de que desea eliminar '
+        context['title2'] = 'Casos'
+        context['cardTitle'] = 'Eliminar Caso'
+
         return context
 
 class ResponsableDeleteView(DeleteView):
@@ -235,6 +243,10 @@ class ResponsableDeleteView(DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Eliminar Responsable'
+        context['text'] = 'Esta seguro de que desea eliminar '
+        context['title2'] = 'Responsables'
+        context['cardTitle'] = 'Eliminar Responsable'
+
         return context
 
 
@@ -248,3 +260,10 @@ class ProyectoDetailView(DetailView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Gmayo: Detalles del Proyecto'
+        context['title2'] = 'Proyectos'
+        context['cardTitle'] = 'Detalles del Proyecto: '
+
+        return context

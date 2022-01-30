@@ -2,7 +2,7 @@ from django.urls import path
 from django.views.generic.edit import BaseUpdateView
 
 
-from .views import CasosDeleteView, CasosListView, CasosUpdateView, ProyectosCreateViewForNonSuperUser, ProyectosCreateView, ProyectosDeleteView, ProyectosUpdateView, ResponsableCreateView, CasoCreateView, ProyectosListView, ResponsableDeleteView, ResponsableListView, ResponsableUpdateView, ProyectoDetailView
+from .views import CasosDeleteView, CasosListView, CasosUpdateView, ProyectosCreateViewForNonSuperUser, ProyectosCreateView, ProyectosDeleteView, ProyectosUpdateView, ResponsableCreateView, CasoCreateView, ResponsableDeleteView, ResponsableListView, ResponsableUpdateView, ProyectoDetailView
 
 urlpatterns = [
     path('agregar/', ProyectosCreateView.as_view(), name='newProyect'),
@@ -10,7 +10,6 @@ urlpatterns = [
     path('agregarCaso/', CasoCreateView.as_view(), name='newCase'),
     path('agregarResponsable/', ResponsableCreateView.as_view(), name='newResponsable'),
 
-    path('proyectos/', ProyectosListView.as_view(), name='proyectos'),
     path('casos/', CasosListView.as_view(), name='casos'),
     path('responsables/', ResponsableListView.as_view(), name='responsables'),
 

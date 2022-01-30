@@ -31,9 +31,18 @@ class ReporteProyectosListView(TemplateView):
         rol = self.get_rol()
         if rol == "ADMINISTRADOR":
             filtro = Proyecto.objects.all()
+
         else:
             filtro = Proyecto.objects.filter(pnf=self.get_rol())
         return filtro
+    def getPnf(self):
+        rol = self.get_rol()
+        if rol == "ADMINISTRADOR":
+            pnf = "Todas"
+
+        else:
+            pnf = rol
+        return pnf
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
@@ -534,6 +543,13 @@ class ReporteProyectosListView(TemplateView):
         context['title3'] = 'Proyectos registrados'
         context['form'] = reporteForm
         context["object_list"] = self.filterQuery()
+        context['urlEdit'] = 'edit_proyecto'
+        context['urlDelete'] = 'delete_proyecto'
+        context["pnf"] = self.getPnf()
+        context["estado"] = "Todos"
+        context["responsable"] = "Todos"
+        context["year"] = "Todos"
+        context["trayecto"] = "Todos"
 
         return context
 

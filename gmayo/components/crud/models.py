@@ -1,3 +1,4 @@
+import random
 from datetime import date, datetime, timezone
 
 from django.core.exceptions import ValidationError
@@ -8,9 +9,9 @@ import datetime
 
 
 
-
 class Responsable(models.Model):
-    nombre = models.CharField(max_length=200, verbose_name='Nombre')
+    nombre = models.CharField(max_length=200, verbose_name='Nombre', )
+    cedula = models.PositiveIntegerField( verbose_name='Cédula', unique=True,)
 
     def __str__(self):
         return self.nombre
@@ -19,7 +20,6 @@ class Responsable(models.Model):
         verbose_name = 'Responsable'
         verbose_name_plural = 'Responsables'
         ordering = ['id']
-
 
 class Caso(models.Model):
     nombre = models.CharField(max_length=200, verbose_name='Nombre')
