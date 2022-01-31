@@ -78,7 +78,7 @@
                 <th>Integrantes</th>
                 <th>Tutor</th>
                 <th>Trayecto</th>
-                <th>Año</th>
+                <th>Periodo A.</th>
                 <th>Estado</th>
                   {%endif%}
                   {% if request.resolver_match.view_name == 'casos' %}
@@ -101,9 +101,9 @@
             <tbody>
               {% for object in object_list %}
               <tr>
+                {% if request.resolver_match.view_name == 'reportProyecto' %}
 
-                <td>{{ object.nombre}}</td>
-                  {% if request.resolver_match.view_name == 'reportProyecto' %}
+                <td>{{ object.nombre}} <br> Caso: {{ object.caso.nombre}}, parroquia {{ object.caso.parroquia}}, municipio {{ object.caso.municipio}}, estado {{ object.caso.estado}}</td>
 
                 <td>{{ object.pnf}}</td>
                 <td>{{ object.integrantes}}</td>
@@ -114,13 +114,13 @@
                 <td>{{ object.estado}}</td>
                   {%endif%}
                   {% if request.resolver_match.view_name == 'casos' %}
-
+                  <td>{{ object.nombre}}</td>
                 <td>{{ object.parroquia}}</td>
                 <td>{{ object.municipio}}</td>
                 <td>{{ object.estado}}</td>
                   {%endif%}
                   {% if request.resolver_match.view_name == 'responsables' %}
-
+                  <td>{{ object.nombre}}</td>
                 <td>{{ object.cedula}}</td>
 
                   {%endif%}
@@ -204,7 +204,7 @@
                 doc.content.splice( 1, 0, {
                     margin: [ 0, 0, 0, 12 ],
                     alignment: 'center',
-                    text:"Trayecto {{trayecto}} Año: {{year}} Reponsable: {{responsable}} Estado: {{estado}} Carrera: {{pnf}} ",
+                    text:"Trayecto {{trayecto}} Periodo A.: {{year}} Reponsable: {{responsable}} Estado: {{estado}} Carrera: {{pnf}} ",
                 } 
                 
                 

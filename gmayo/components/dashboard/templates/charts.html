@@ -12,7 +12,7 @@
               <div class="card">
                 <div class="card-header border-0">
                   <div class="d-flex justify-content-between">
-                    <h3 class="card-title">Estadistica  año {{year}}</h3>
+                    <h3 class="card-title">Estadistica  Periodo A. {{year}}</h3>
                   </div>
                 </div>
                 <div class="card-body">
@@ -51,7 +51,7 @@
               <div class="card">
                 <div class="card-header border-0">
                   <div class="d-flex justify-content-between">
-                    <h3 class="card-title">Estadisticas año {{pastYear}}</h3>
+                    <h3 class="card-title">Estadisticas Periodo A. {{pastYear}}</h3>
                   </div>
                 </div>
                 <div class="card-body">
@@ -124,13 +124,13 @@
 {%block scripts%}
 <script src="/static/plugins/chartsjs/dist/chart.js"></script>
 <script>
-  // Estadistica ultimos dos años
+  // Estadistica ultimos dos Periodo A.
   const data1 = {{proyectAproved}},
    data2 = {{proyectYearInCourseAproved}},
    data3 = {{proyectPastYearAproved}},
    fullData = [data1, data3,data2],
-   label1 = {{year}},
-   label2 = {{pastYear}},
+   label1 = "{{year}}",
+   label2 =  "{{pastYear}}",
    label3 = "Todos",
    fullLabels = [label3,label2,label1];
     const ctx = document.getElementById('myChart');
@@ -166,7 +166,7 @@ const myChart = new Chart(ctx, {
 });
 </script>
 <script>
-  // Estadistica año en curso
+  // Estadistica {{year}}
   const data4 = {{proyectYearInCourseAproved}},
    data5 = {{proyectYearInCourseNotAproved}},
    data6 = {{proyectYearInCourseInCourse}};
@@ -206,7 +206,7 @@ const myChartYear = new Chart(ctx2, {
 
 </script>
 <script>
-  // Estadistica año anterior
+  // Estadistica Periodo {{yearPast}}
   const data7 = {{proyectPastYearAproved}},
    data8 = {{proyectPastYearNotAproved}},
    data9 = {{proyectPastYearInCourse}};

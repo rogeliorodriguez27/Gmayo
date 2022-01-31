@@ -562,7 +562,7 @@ def generate_pdf(request, pk):
 
     if request.user.is_authenticated:
         objects = Proyecto.objects.filter(id=pk)
-        context = {'objects': objects}
+        context = {'objects': objects, 'request': request}
         html = render_to_string("detReporte.html", context)
         response = HttpResponse(content_type="application/pdf")
         response["Content-Disposition"] = "inline; reporte.pdf"

@@ -22,7 +22,7 @@ class Responsable(models.Model):
         ordering = ['id']
 
 class Caso(models.Model):
-    nombre = models.CharField(max_length=200, verbose_name='Nombre')
+    nombre = models.CharField(max_length=200, verbose_name='Nombre Completo')
     parroquia = models.CharField(max_length=200,  verbose_name='Parroquia')
     municipio = models.CharField(max_length=200, default='Tucupita', verbose_name='Municipio')
     estado = models.CharField(max_length=200, default='Delta Amacuro', verbose_name="Estado")
@@ -93,9 +93,9 @@ class Proyecto(models.Model):
     date = currentDateTime.date()
     yearToday = date.strftime("%Y")
     yearInt = int(yearToday) + 1
-    yearChoice = [(i, i) for i in range(2008, yearInt)]
+    yearChoice = [(f"{i}-{i+1}",f"{i}-{i+1}") for i in range(2008, yearInt)]
 
-    year = models.IntegerField(choices=yearChoice, verbose_name="Año", blank=True)
+    year = models.CharField(choices=yearChoice,max_length=20, verbose_name="Periodo Académico", blank=True)
     responsable = models.ForeignKey(Responsable, on_delete=models.CASCADE, verbose_name='Responsable', blank=True)
     caso = models.ForeignKey(Caso, on_delete=models.CASCADE, verbose_name='Caso')
     resumen = models.TextField(max_length=300, verbose_name='Resumen', default='ninguno')

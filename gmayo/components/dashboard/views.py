@@ -32,8 +32,11 @@ class charts(TemplateView):
     date = currentDateTime.date()
     yearToday = date.strftime("%Y")
     yearInt = int(yearToday)
-    proyectYearInCourse = Proyecto.objects.filter(year=yearInt)
-    proyectPastYear = Proyecto.objects.filter(year=(yearInt-1))
+    periodoActual = f'{yearInt-1}-{yearInt}'
+    periodoPast = f'{yearInt-2}-{yearInt-1}'
+    
+    proyectYearInCourse = Proyecto.objects.filter(year=periodoActual)
+    proyectPastYear = Proyecto.objects.filter(year=periodoPast)
     filtro = Proyecto.objects.all()
 
     @method_decorator(login_required)
@@ -65,8 +68,8 @@ class charts(TemplateView):
         context = super().get_context_data(**kwargs)
         context['title'] = "Gmayo: Bienvenido"
         context['title2'] = "Estadística"
-        context['year'] = self.yearInt
-        context['pastYear'] = self.yearInt-1
+        context['year'] = self.periodoActual
+        context['pastYear'] = self.periodoPast
         context['form'] = chartForm
         context["pnf"] = "Todas"
  
