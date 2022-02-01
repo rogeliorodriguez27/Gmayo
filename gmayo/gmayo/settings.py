@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
+import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!6n_8%j$ga$bawln!i3cn4(&vfcyzy+5ek4=pw=*pg36&mk%a!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [*]
 
 # Application definition
 
@@ -52,9 +54,10 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-MIDDLEWARE += ('crum.CurrentRequestUserMiddleware',)
+MIDDLEWARE += ('crum.CurrentRequestUserMiddleware','whitenoise.middleware.WhiteNoiseMiddleware',)
 
 ROOT_URLCONF = 'gmayo.urls'
 
@@ -81,7 +84,10 @@ WSGI_APPLICATION = 'gmayo.wsgi.application'
 
 
 DATABASES = {
-    'default': {
+        'default': dj_database_url.config(
+        default=config('DATABASE_URL')),
+
+    'postgresql': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
         'NAME': 'gmayoDB',
@@ -135,6 +141,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
