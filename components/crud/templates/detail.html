@@ -19,7 +19,8 @@
 
         <div class="card-body">
 
-     
+          {% if request.user.rol ==  object.pnf or request.user.rol == "ADMINISTRADOR"  %}
+
        
 <p id="nombre">Nombre: {{ object.nombre}}  </p>
 <p id="caso">Caso: {{ object.caso.nombre}}, parroquia {{ object.caso.parroquia}}, municipio {{ object.caso.municipio}}, estado {{ object.caso.estado}}</p>
