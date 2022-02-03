@@ -69,16 +69,16 @@
 
 
 
-          <table id="table" class="display" style="width:100%">
+          <table id="table" class="display table-bordered table-striped table-responsive " style="width:100%">
             <thead>
               <tr>
-                <th>Nombre</th>
+                <th >Nombre</th>
                   {% if request.resolver_match.view_name == 'reportProyecto' %}
                 <th>Carrera</th>
                 <th>Integrantes</th>
                 <th>Tutor</th>
                 <th>Trayecto</th>
-                <th>Periodo A.</th>
+                <th style="text-align: center;">Periodo</th>
                 <th>Estado</th>
                   {%endif%}
                   {% if request.resolver_match.view_name == 'casos' %}
@@ -103,7 +103,7 @@
               <tr>
                 {% if request.resolver_match.view_name == 'reportProyecto' %}
 
-                <td>{{ object.nombre}} <br> Caso: {{ object.caso.nombre}}, parroquia {{ object.caso.parroquia}}, municipio {{ object.caso.municipio}}, estado {{ object.caso.estado}}</td>
+                <td >{{ object.nombre}} <br> Caso: {{ object.caso.nombre}}, parroquia {{ object.caso.parroquia}}, municipio {{ object.caso.municipio}}, estado {{ object.caso.estado}}</td>
 
                 <td>{{ object.pnf}}</td>
                 <td>{{ object.integrantes}}</td>
@@ -187,13 +187,18 @@
         "search": "Buscar:",
 
         },
-      responsive: true,
+   responsive:true,
+        columnDefs: [
+            { width: 500, targets: 0 }
+        ],
+
      dom: 'Bfrtip',
 
           buttons: [{
             extend: 'pdfHtml5',
             exportOptions: {
               columns: [0,1,2,3,4,5,6]},
+              
             text: 'Generar Reporte',
             customize: function ( doc ) {
 

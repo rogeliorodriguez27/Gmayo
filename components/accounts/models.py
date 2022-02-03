@@ -11,14 +11,14 @@ class CustomUser(AbstractUser):
         ("Agroalimentacion", 'Coord. Agroalimentación'),
         ("Informatica", 'Coord. Informatica'),
         ("Construccion Civil", 'Coord. Construcción Civil'),
-        ("Procesamiento y Distribución de alimentos", 'Coord. Proc. y Dist. de alimentos'),
+        ("P. y D. de alimentos", 'Coord. Proc. y Dist. de alimentos'),
         ("Terapia Ocupacional", 'Coord. Terapia Ocupacional'),
         ("Fisioterapia", 'Coord. Fisioterapia'),
 
     ]
 
-    rol = models.TextField(
-        max_length=41,
+    rol = models.CharField(
+        max_length=23,
         choices=rol_choice,
         verbose_name="Rol",
         unique=True,

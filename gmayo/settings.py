@@ -11,8 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
-import dj_database_url
-from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +25,7 @@ SECRET_KEY = 'django-insecure-!6n_8%j$ga$bawln!i3cn4(&vfcyzy+5ek4=pw=*pg36&mk%a!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -84,10 +83,8 @@ WSGI_APPLICATION = 'gmayo.wsgi.application'
 
 
 DATABASES = {
-        'default': dj_database_url.config(
-        default=config('DATABASE_URL')),
 
-    'postgresql': {
+    'default': { #postgres
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
         'NAME': 'gmayoDB',
@@ -99,6 +96,14 @@ DATABASES = {
         'HOST': 'localhost',
 
         'PORT': '5432',
+    },
+    
+    'mysql': { #mysql
+        #'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'rogelidev$gmayoDB',
+        'USER': 'rogeliodev',
+        'PASSWORD': 'admin2022',
+        'HOST': 'rogelidev.mysql.pythonanywhere-services.com',
     }
 }
 
