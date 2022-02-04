@@ -53,8 +53,7 @@
               </li>
               <li class="nav-item">
                 <a href="/crud/agregarResponsable" class="nav-link">
-                    <i class="fas fa-user-friends"></i>
-                  <p>Docentes</p>
+                  <i class="fas fa-chalkboard-teacher"></i>                  <p>Docentes</p>
                 </a>
               </li>
             </ul>
@@ -74,11 +73,21 @@
               </li>
           <li class="nav-item">
                 <a href="/crud/responsables" class="nav-link">
-                    <i class="fas fa-user-friends"></i>
-                  <p>Docentes</p>
+                  <i class="fas fa-chalkboard-teacher"></i>                  <p>Docentes</p>
                 </a>
               </li>
           <li class="nav-header">GMAYO</li>
+          {%if request.user.rol == "ADMINISTRADOR"%}
+          <li class="nav-item">
+         
+          <a href="/accounts/users/" class="nav-link">
+            <i class="fas fa-user-friends"></i>
+            <p>  Usuarios</p>
+
+          </a>
+              </li>
+              {%endif%}
+           
           <li class="nav-item">
                 <a href="/dashboard/" class="nav-link">
                   <i class="fas fa-info-circle"></i>

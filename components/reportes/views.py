@@ -543,8 +543,8 @@ class ReporteProyectosListView(TemplateView):
         context['title3'] = 'Proyectos registrados'
         context['form'] = reporteForm
         context["object_list"] = self.filterQuery()
-        context['urlEdit'] = 'edit_proyecto'
-        context['urlDelete'] = 'delete_proyecto'
+        context['urlEdit'] = '/crud/edit_proyecto'
+        context['urlDelete'] = '/crud/delete_proyecto'
         context["pnf"] = self.getPnf()
         context["estado"] = "Todos"
         context["responsable"] = "Todos"

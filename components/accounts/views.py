@@ -28,7 +28,7 @@ class SignUpView(generic.CreateView):
             return redirect(reverse_lazy('charts'))
         return super().dispatch(request, *args, **kwargs)
 
-class UpdateUserView(generic.UpdateView):
+class ProfileUpdateUserView(generic.UpdateView):
     form_class = ProfileForm
 
     success_url = reverse_lazy('charts')
@@ -56,4 +56,45 @@ def logout_view(request):
     if request.user.is_authenticated:
         logout(request)
     return HttpResponseRedirect(reverse_lazy('about'))
+
+class UsersListView(generic.ListView):
+    model = CustomUser
+    template_name = "view.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.rol != "ADMINISTRADOR":
+            return HttpResponseRedirect(reverse_lazy('charts'))
+
+
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Gmayo: Usuarios registrados'
+        context['urlEdit'] = '/accounts/edit_user'
+        #context['urlDelete'] = '/accounts/delete_user'
+        context['title2'] = 'Usuarios'
+        context['cardTitle'] = 'Usuarios Registrados'
+
+        return context
+
+class UsersUpdateView(UpdateView):
+    model = CustomUser
+    form_class = CreationUserForm
+    success_url = reverse_lazy('users')
+
+    template_name = "create.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Gmayo: Editar Usuario'
+        context['title2'] = 'Usuarios'
+        context['cardTitle'] = 'Editar Usuarios'
+
+        return context
 

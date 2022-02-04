@@ -69,10 +69,20 @@
 
 
 
-          <table id="table" class="display table-bordered table-striped table-responsive " style="width:100%">
+          <table id="table" class="display table-bordered table-striped  " style="width:100%">
             <thead>
               <tr>
-                <th >Nombre</th>
+                <th >Nombre
+                  {% if request.resolver_match.view_name == 'users' %}
+                  de usuario
+  
+                    {%endif%}
+
+
+
+
+
+                </th>
                   {% if request.resolver_match.view_name == 'reportProyecto' %}
                 <th>Carrera</th>
                 <th>Integrantes</th>
@@ -91,6 +101,16 @@
                 <th>Cédula</th>
 
                   {%endif%}
+                  
+                  {% if request.resolver_match.view_name == 'users' %}
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>E-mail</th>
+                  <th>Rol</th>
+
+  
+                    {%endif%}
+  
 
                   <th>Opciones</th>
 
@@ -124,12 +144,28 @@
                 <td>{{ object.cedula}}</td>
 
                   {%endif%}
+
+                  {% if request.resolver_match.view_name == 'users'%}
+                  <td>{{ object.username}}</td>
+                  <td>{{ object.first_name}}</td>
+                  <td>{{ object.last_name}}</td>
+
+                  <td>{{ object.email}}</td>
+
+                  <td>{{ object.rol}}</td>
+               
+                  {%endif%}
                 <td>
-                  <a href="/crud/{{urlEdit}}/{{object.id}}"
+                  
+                  <a href="{{urlEdit}}/{{object.id}}"
                      class="btn btn-warning btn-xs btn-flat"><i
                       class="fas fa-edit"></i></a>
-                  <a href="/crud/{{urlDelete}}/{{object.id}}" type="button" class="btn btn-danger btn-xs btn-flat"><i
+                      {% if request.resolver_match.view_name != 'users' %}
+
+                  <a href="{{urlDelete}}/{{object.id}}" type="button" class="btn btn-danger btn-xs btn-flat"><i
                       class="fas fa-trash-alt"></i></a>
+                      {%endif%}
+
                   {% if request.resolver_match.view_name == 'reportProyecto' %}
 
                   <a href="{% url 'proyectoDetail' object.id%}" type="button" class="btn btn-secondary btn-xs btn-flat"><i

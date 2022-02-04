@@ -108,8 +108,8 @@ class CasosListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Gmayo: Casos registrados'
-        context['urlEdit'] = 'edit_caso'
-        context['urlDelete'] = 'delete_caso'
+        context['urlEdit'] = '/crud/edit_caso'
+        context['urlDelete'] = '/crud/delete_caso'
         context['title2'] = 'Casos'
         context['cardTitle'] = 'Casos Registrados'
 
@@ -127,8 +127,8 @@ class ResponsableListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Gmayo: Responsables registrados'
-        context['urlEdit'] = 'edit_responsable'
-        context['urlDelete'] = 'delete_responsable'
+        context['urlEdit'] = '/crud/edit_responsable'
+        context['urlDelete'] = '/crud/delete_responsable'
         context['title2'] = 'Responsables'
         context['cardTitle'] = 'Responsables registrados'
 
