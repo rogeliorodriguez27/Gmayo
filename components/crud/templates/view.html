@@ -89,7 +89,7 @@
                 <th>Tutor</th>
                 <th>Trayecto</th>
                 <th style="text-align: center;">Periodo</th>
-                <th>Estado</th>
+                <th>Estatus</th>
                   {%endif%}
                   {% if request.resolver_match.view_name == 'casos' %}
                 <th>Parroquia</th>
@@ -245,7 +245,7 @@
                 doc.content.splice( 1, 0, {
                     margin: [ 0, 0, 0, 12 ],
                     alignment: 'center',
-                    text:"Trayecto {{trayecto}} Periodo A.: {{year}} Reponsable: {{responsable}} Estado: {{estado}} Carrera: {{pnf}} ",
+                    text:"Trayecto {{trayecto}} Periodo A.: {{year}} Reponsable: {{responsable}} Estatus: {{estado}} Carrera: {{pnf}} ",
                 } 
                 
                 

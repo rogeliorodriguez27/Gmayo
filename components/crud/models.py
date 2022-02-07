@@ -41,20 +41,23 @@ class Proyecto(models.Model):
     nombre = models.CharField(max_length=200, verbose_name='Nombre')
 
     pnf_choice = [
-        ("Administracion", "Administracion"),
-        ("Contaduria Publica", 'Contaduria Publica'),
+        ("Administración", "Administración"),
+        ("Contaduría Pública", 'Contaduria Pública'),
         ("Turismo", 'Turismo'),
-        ("Agroalimentacion", 'Agroalimentacion'),
-        ("Informatica", 'Informatica'),
-        ("Construccion Civil", 'Construccion Civil'),
-        ("Procesamiento y Distribucion de alimentos", 'Procesamiento y Dist. de alimentos'),
+        ("Agroalimentación", 'Agroalimentación'),
+        ("Informática", 'Informática'),
+        ("Construcción Civil", 'Construcción Civil'),
+        ("Procesamiento y Distribución de alimentos", 'Procesamiento y Dist. de alimentos'),
         ("Terapia Ocupacional", 'Terapia Ocupacional'),
         ("Fisioterapia", 'Fisioterapia'),
+        ("Medicina Veterinaria", 'Medicina Veterinaria'),
+        ("Enfermería Integral Comunitaria", 'Enfermeria Int. Comunitaria'),
+
 
     ]
 
     pnf = models.TextField(
-        max_length=41,
+        max_length=50,
         choices=pnf_choice,
 
         verbose_name="Carrera",
@@ -71,7 +74,7 @@ class Proyecto(models.Model):
     estado = models.TextField(
         max_length=50,
         choices=estado_choice,
-        verbose_name="Estado",
+        verbose_name="Estatus",
         blank=True
     )
 

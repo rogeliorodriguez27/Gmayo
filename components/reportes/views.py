@@ -526,6 +526,23 @@ class ReporteProyectosListView(TemplateView):
                 context["trayecto"] = trayecto
                 context["object_list"] = filtro
 
+            elif estado == "" and responsable == None and year != "0" and pnf != ""and trayecto == "":
+                filtro = Proyecto.objects.filter(year=year)
+                print(98)
+                if rol != "ADMINISTRADOR":
+                    filtro = filtro.filter(pnf=self.get_rol())
+                    pnf = self.get_rol()
+                else:
+                    filtro = filtro.filter(pnf=pnf)
+
+                context["pnf"] = pnf
+                context["estado"] = "Todos"
+                context["responsable"] = "Todos"
+                context["year"] = "Todos"
+                context["trayecto"] = trayecto
+                context["object_list"] = filtro
+
+
             else:
                 filtro = self.filterQuery()
                 context["object_list"] = filtro
