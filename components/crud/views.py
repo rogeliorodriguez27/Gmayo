@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 # Create your views here.
 from django.urls import reverse_lazy
@@ -21,6 +21,9 @@ class ProyectosCreateView(CreateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if request.user.rol == "Coord. Proyectos":
+            return redirect(reverse_lazy('charts'))
+
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -39,6 +42,9 @@ class ProyectosCreateViewForNonSuperUser(CreateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if request.user.rol == "Coord. Proyectos":
+            return redirect(reverse_lazy('charts'))
+
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -58,6 +64,9 @@ class ResponsableCreateView(CreateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if request.user.rol == "Coord. Proyectos":
+            return redirect(reverse_lazy('charts'))
+
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -79,6 +88,9 @@ class CasoCreateView(CreateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if request.user.rol == "Coord. Proyectos":
+            return redirect(reverse_lazy('charts'))
+
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -143,6 +155,9 @@ class ProyectosUpdateView(UpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if request.user.rol == "Coord. Proyectos":
+            return redirect(reverse_lazy('charts'))
+
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -161,6 +176,9 @@ class CasosUpdateView(UpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if request.user.rol == "Coord. Proyectos":
+            return redirect(reverse_lazy('charts'))
+
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -180,6 +198,9 @@ class ResponsableUpdateView(UpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if request.user.rol == "Coord. Proyectos":
+            return redirect(reverse_lazy('charts'))
+
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -199,6 +220,9 @@ class ProyectosDeleteView(DeleteView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if request.user.rol == "Coord. Proyectos":
+            return redirect(reverse_lazy('charts'))
+
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -219,6 +243,9 @@ class CasosDeleteView(DeleteView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if request.user.rol == "Coord. Proyectos":
+            return redirect(reverse_lazy('charts'))
+
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -238,6 +265,9 @@ class ResponsableDeleteView(DeleteView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if request.user.rol == "Coord. Proyectos":
+            return redirect(reverse_lazy('charts'))
+
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -258,6 +288,7 @@ class ProyectoDetailView(DetailView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+       
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):

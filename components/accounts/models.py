@@ -5,6 +5,7 @@ from django.db import models
 class CustomUser(AbstractUser):
     rol_choice = [
         ("ADMINISTRADOR", "ADMINISTRADOR"),
+        ("Coord. Proyectos", "Coord. Proyectos"),
         ("Administración", "Coord. Administración"),
         ("Contaduría Pública", 'Coord. Contaduría Pública'),
         ("Turismo", 'Coord.Turismo'),

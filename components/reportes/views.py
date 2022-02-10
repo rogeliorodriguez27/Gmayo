@@ -29,7 +29,7 @@ class ReporteProyectosListView(TemplateView):
         return rol
     def filterQuery(self):
         rol = self.get_rol()
-        if rol == "ADMINISTRADOR":
+        if rol == "ADMINISTRADOR" or rol == "Coord. Proyectos":
             filtro = Proyecto.objects.all()
 
         else:
@@ -37,7 +37,7 @@ class ReporteProyectosListView(TemplateView):
         return filtro
     def getPnf(self):
         rol = self.get_rol()
-        if rol == "ADMINISTRADOR":
+        if rol == "ADMINISTRADOR" or rol == "Coord. Proyectos":
             pnf = "Todas"
 
         else:
@@ -64,9 +64,9 @@ class ReporteProyectosListView(TemplateView):
             responsable = form.cleaned_data['responsable']
             estado = form.cleaned_data['estado']
             pnf = form.cleaned_data['pnf']
-            if rol != "ADMINISTRADOR":
+            if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                 pnf = ""
-            print(pnf)
+            
             if pnf == None:
                 pnf = ""
             trayecto = form.cleaned_data['trayecto']
@@ -76,7 +76,7 @@ class ReporteProyectosListView(TemplateView):
                 filtro = Proyecto.objects.all()
                 pnf = "Todas"
 
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -92,7 +92,7 @@ class ReporteProyectosListView(TemplateView):
             elif estado != "" and responsable != None and year != "0" and pnf != ""and trayecto != "":
                 filtro = Proyecto.objects.filter(responsable=responsable).filter(year=year).filter(
                     estado=estado).filter(pnf=pnf).filter(trayecto=trayecto)
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -107,7 +107,7 @@ class ReporteProyectosListView(TemplateView):
             elif estado == "" and responsable != None and year != "0" and pnf != ""and trayecto != "":
                 filtro = Proyecto.objects.filter(responsable=responsable).filter(year=year).filter(pnf=pnf).filter(trayecto=trayecto)
                 print(3)
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -121,7 +121,7 @@ class ReporteProyectosListView(TemplateView):
             elif estado != "" and responsable == None and year != "0" and pnf != ""and trayecto != "":
                 filtro = Proyecto.objects.filter(estado=estado).filter(year=year).filter(pnf=pnf).filter(trayecto=trayecto)
                 print(4)
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -135,7 +135,7 @@ class ReporteProyectosListView(TemplateView):
             elif estado != "" and responsable != None and year == "0" and pnf != ""and trayecto != "":
                 filtro = Proyecto.objects.filter(responsable=responsable).filter(estado=estado).filter(pnf=pnf).filter(trayecto=trayecto)
                 print(5)
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -150,7 +150,7 @@ class ReporteProyectosListView(TemplateView):
                 filtro = Proyecto.objects.filter(responsable=responsable).filter(year=year).filter(estado=estado).filter(trayecto=trayecto)
                 print(6)
                 pnf = "Todos"
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -164,7 +164,7 @@ class ReporteProyectosListView(TemplateView):
             elif estado != "" and responsable != None and year != "0" and pnf != ""and trayecto == "":
                 filtro = Proyecto.objects.filter(responsable=responsable).filter(year=year).filter(pnf=pnf).filter(estado=estado)
                 print(7)
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -178,7 +178,7 @@ class ReporteProyectosListView(TemplateView):
             elif estado == "" and responsable == None and year != "0" and pnf != ""and trayecto != "":
                 filtro = Proyecto.objects.filter(year=year).filter(pnf=pnf).filter(trayecto=trayecto)
                 print(8)
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -192,7 +192,7 @@ class ReporteProyectosListView(TemplateView):
             elif estado == "" and responsable != None and year == "0" and pnf != ""and trayecto != "":
                 filtro = Proyecto.objects.filter(responsable=responsable).filter(pnf=pnf).filter(trayecto=trayecto)
                 print(9)
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -207,7 +207,7 @@ class ReporteProyectosListView(TemplateView):
                 filtro = Proyecto.objects.filter(responsable=responsable).filter(year=year).filter(trayecto=trayecto)
                 print(10)
                 pnf = "Todos"
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -221,7 +221,7 @@ class ReporteProyectosListView(TemplateView):
             elif estado == "" and responsable != None and year != "0" and pnf != ""and trayecto == "":
                 filtro = Proyecto.objects.filter(responsable=responsable).filter(year=year).filter(pnf=pnf)
                 print(11)
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -235,7 +235,7 @@ class ReporteProyectosListView(TemplateView):
             elif estado != "" and responsable == None and year != "0" and pnf != ""and trayecto == "":
                 filtro = Proyecto.objects.filter(estado=estado).filter(year=year).filter(pnf=pnf)
                 print(12)
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -250,7 +250,7 @@ class ReporteProyectosListView(TemplateView):
             elif estado != "" and responsable != None and year == "0" and pnf != ""and trayecto == "":
                 filtro = Proyecto.objects.filter(estado=estado).filter(responsable=responsable).filter(pnf=pnf)
                 print(13)
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -265,7 +265,7 @@ class ReporteProyectosListView(TemplateView):
                 filtro = Proyecto.objects.filter(estado=estado).filter(responsable=responsable).filter(year=year)
                 print(14)
                 pnf = "Todos"
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -280,7 +280,7 @@ class ReporteProyectosListView(TemplateView):
                 filtro = Proyecto.objects.filter(estado=estado).filter(responsable=responsable).filter(trayecto=trayecto)
                 print(15)
                 pnf = "Todos"
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -295,7 +295,7 @@ class ReporteProyectosListView(TemplateView):
                 filtro = Proyecto.objects.filter(estado=estado).filter(year=year).filter(trayecto=trayecto)
                 print(16)
                 pnf = "Todos"
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -309,7 +309,7 @@ class ReporteProyectosListView(TemplateView):
             elif estado != "" and responsable == None and year == "0" and pnf != ""and trayecto != "":
                 filtro = Proyecto.objects.filter(estado=estado).filter(pnf=pnf).filter(trayecto=trayecto)
                 print(17)
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -323,7 +323,7 @@ class ReporteProyectosListView(TemplateView):
             elif estado == "" and responsable == None and year == "0" and pnf != ""and trayecto != "":
                 filtro = Proyecto.objects.filter(pnf=pnf).filter(trayecto=trayecto)
                 print(18)
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -338,7 +338,7 @@ class ReporteProyectosListView(TemplateView):
                 filtro = Proyecto.objects.filter(estado=estado).filter(trayecto=trayecto)
                 print(19)
                 pnf = "Todos"
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -353,7 +353,7 @@ class ReporteProyectosListView(TemplateView):
                 filtro = Proyecto.objects.filter(estado=estado).filter(responsable=responsable)
                 print(20)
                 pnf = "Todos"
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -368,7 +368,7 @@ class ReporteProyectosListView(TemplateView):
                 filtro = Proyecto.objects.filter(year=year).filter(trayecto=trayecto)
                 print(21)
                 pnf = "Todos"
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -382,7 +382,7 @@ class ReporteProyectosListView(TemplateView):
             elif estado == "" and responsable != None and year == "0" and pnf != ""and trayecto == "":
                 filtro = Proyecto.objects.filter(pnf=pnf).filter(responsable=responsable)
                 print(22)
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -397,7 +397,7 @@ class ReporteProyectosListView(TemplateView):
                 filtro = Proyecto.objects.filter(year=year).filter(responsable=responsable)
                 print(23)
                 pnf = "Todos"
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -412,7 +412,7 @@ class ReporteProyectosListView(TemplateView):
                 filtro = Proyecto.objects.filter(year=year).filter(estado=estado)
                 print(24)
                 pnf = "Todos"
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -426,7 +426,7 @@ class ReporteProyectosListView(TemplateView):
             elif estado != "" and responsable == None and year == "0" and pnf != ""and trayecto == "":
                 filtro = Proyecto.objects.filter(pnf=pnf).filter(estado=estado)
                 print(25)
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -441,7 +441,7 @@ class ReporteProyectosListView(TemplateView):
                 filtro = Proyecto.objects.filter(responsable=responsable).filter(trayecto=trayecto)
                 print(26)
                 pnf = "Todos"
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -457,7 +457,7 @@ class ReporteProyectosListView(TemplateView):
                 filtro = Proyecto.objects.filter(estado=estado)
                 print(26)
                 pnf = "Todos"
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -472,7 +472,7 @@ class ReporteProyectosListView(TemplateView):
                 filtro = Proyecto.objects.filter(responsable=responsable)
                 print(27)
                 pnf = "Todos"
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -486,7 +486,7 @@ class ReporteProyectosListView(TemplateView):
             elif estado == "" and responsable == None and year != "0" and pnf == ""and trayecto == "":
                 filtro = Proyecto.objects.filter(year=year)
                 pnf = "Todos"
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
                 print(28)
@@ -500,7 +500,7 @@ class ReporteProyectosListView(TemplateView):
             elif estado == "" and responsable == None and year == "0" and pnf != ""and trayecto == "":
                 filtro = Proyecto.objects.filter(pnf=pnf)
                 print(29)
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -515,7 +515,7 @@ class ReporteProyectosListView(TemplateView):
                 filtro = Proyecto.objects.filter(trayecto=trayecto)
                 print(30)
                 pnf = "Todos"
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
 
@@ -529,7 +529,7 @@ class ReporteProyectosListView(TemplateView):
             elif estado == "" and responsable == None and year != "0" and pnf != ""and trayecto == "":
                 filtro = Proyecto.objects.filter(year=year)
                 print(98)
-                if rol != "ADMINISTRADOR":
+                if rol != "ADMINISTRADOR" and rol != "Coord. Proyectos":
                     filtro = filtro.filter(pnf=self.get_rol())
                     pnf = self.get_rol()
                 else:

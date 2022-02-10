@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'gmayo.wsgi.application'
 
 DATABASES = {
 
-    'postgres': { #postgres
+    'default': { #postgres
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
         'NAME': 'gmayoDB',
@@ -98,10 +98,10 @@ DATABASES = {
         'PORT': '5432',
     },
     
-    'default': { #mysql
-        'ENGINE': 'django.db.backends.mysql',
+    'mysql': { #mysql
+       # 'ENGINE': 'django.db.backends.mysql',
         'NAME': 'rogelidev$gmayoDB',
-        'USER': 'rogeliodev',
+        'USER': 'rogelidev',
         'PASSWORD': 'admin2022',
         'HOST': 'rogelidev.mysql.pythonanywhere-services.com',
     }

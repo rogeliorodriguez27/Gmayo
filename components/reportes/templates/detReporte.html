@@ -18,7 +18,7 @@ iVBORw0KGgoAAAANSUhEUgAAA8gAAAA/CAIAAACzT3ZpAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
                 <h3 style="text-align: center;">Reporte de proyecto</h3>
   <br>
   {%for object in objects%}
-  {% if request.user.rol !=  object.pnf and request.user.rol != "ADMINISTRADOR"  %}
+  {% if request.user.rol !=  object.pnf and request.user.rol != "ADMINISTRADOR" and request.user.rol != "Coord. Proyectos"  %}
   <div >
 
   <h1 style="color: red;">No tiene permiso para visualizar esta información</h1>
@@ -28,7 +28,7 @@ iVBORw0KGgoAAAANSUhEUgAAA8gAAAA/CAIAAACzT3ZpAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
 </div>
 {%endif%}
 
-{% if request.user.rol ==  object.pnf or request.user.rol == "ADMINISTRADOR"  %}
+{% if request.user.rol ==  object.pnf or request.user.rol == "ADMINISTRADOR" or request.user.rol == "Coord. Proyectos" %}
 
 
 

@@ -21,12 +21,12 @@
           
           <form method="POST"  id="post-form" style="width:60%; margin:auto;">
             {% csrf_token %}
-            {%if request.user.rol != "ADMINISTRADOR" %}
-
+            {%if request.user.rol != "ADMINISTRADOR" and request.user.rol != "Coord. Proyectos"%}
+            
            {{ form.pnf.label }}
            {{ form.pnf|attr:"readonly:readonly" }}
             {%endif%}
-            {%if request.user.rol == "ADMINISTRADOR" %}
+            {%if request.user.rol == "ADMINISTRADOR" or request.user.rol == "Coord. Proyectos" %}
 
            {{ form.pnf.label }}
            {{ form.pnf }}
@@ -156,11 +156,12 @@
                
                   {%endif%}
                 <td>
-                  
+                  {% if request.user.rol != "Coord. Proyectos"%}
                   <a href="{{urlEdit}}/{{object.id}}"
                      class="btn btn-warning btn-xs btn-flat"><i
                       class="fas fa-edit"></i></a>
-                      {% if request.resolver_match.view_name != 'users' %}
+                      {%endif%}
+                      {% if request.resolver_match.view_name != 'users' and request.user.rol != "Coord. Proyectos"%}
 
                   <a href="{{urlDelete}}/{{object.id}}" type="button" class="btn btn-danger btn-xs btn-flat"><i
                       class="fas fa-trash-alt"></i></a>

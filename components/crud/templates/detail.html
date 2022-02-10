@@ -10,7 +10,7 @@
 
           </div>
 
-          {% if request.user.rol !=  object.pnf and request.user.rol != "ADMINISTRADOR"  %}
+          {% if request.user.rol !=  object.pnf and request.user.rol != "ADMINISTRADOR" and request.user.rol != "Coord. Proyectos"   %}
           <div class="card-body">
 
           <h1 style="color: red;">No tiene permiso para visualizar esta pagina</h1>
@@ -19,7 +19,7 @@
 
         <div class="card-body">
 
-          {% if request.user.rol ==  object.pnf or request.user.rol == "ADMINISTRADOR"  %}
+          {% if request.user.rol ==  object.pnf or request.user.rol == "ADMINISTRADOR" or request.user.rol == "Coord. Proyectos" %}
 
        
 <p id="nombre">Nombre: {{ object.nombre}}  </p>

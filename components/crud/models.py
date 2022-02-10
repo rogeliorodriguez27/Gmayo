@@ -96,7 +96,7 @@ class Proyecto(models.Model):
     date = currentDateTime.date()
     yearToday = date.strftime("%Y")
     yearInt = int(yearToday) + 1
-    yearChoice = [(f"{i}-{i+1}",f"{i}-{i+1}") for i in range(2008, yearInt)]
+    yearChoice = [(f'{i}',f'{i}') for i in range(2008, yearInt)]
 
     year = models.CharField(choices=yearChoice,max_length=20, verbose_name="Periodo Académico", blank=True)
     responsable = models.ForeignKey(Responsable, on_delete=models.CASCADE, verbose_name='Responsable', blank=True)
@@ -104,7 +104,7 @@ class Proyecto(models.Model):
     resumen = models.TextField(max_length=2000, verbose_name='Resumen', default='ninguno')
 
     integrantes = models.TextField(max_length=300, verbose_name='Integrantes', default='no disponible')
-    upload = models.FileField(max_length=50, upload_to='uploads/%Y/%m/%d/',verbose_name='Documento', blank=False, validators=[file_size])
+    upload = models.FileField(max_length=50, upload_to='uploads/%Y/%m/%d/',verbose_name='Documento', blank=True, validators=[file_size])
 
     class Meta:
         verbose_name = 'Proyecto'

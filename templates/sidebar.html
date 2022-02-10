@@ -25,7 +25,9 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
+          
+          {% if request.user.rol != "Coord. Proyectos"%}
+               <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="far fa-plus-square"></i>
               <p>
@@ -58,6 +60,7 @@
               </li>
             </ul>
           </li>
+          {%endif%}
           <li class="nav-header">Ver</li>
           <li class="nav-item">
                 <a href="/report/proyectos" class="nav-link">
