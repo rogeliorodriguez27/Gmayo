@@ -14,13 +14,12 @@
 
           </h3>
 
-
         </div>
         <div class="card-body">
 
           <form method="POST" id="post-form" style="width:60%; margin:auto;" enctype="multipart/form-data">
             {% csrf_token %}
-            {% if request.resolver_match.view_name == 'deleteProyect' or request.resolver_match.view_name == 'deleteCase' or request.resolver_match.view_name == 'deleteResponsable'  %}
+            {% if request.resolver_match.view_name == 'deleteProyect' or request.resolver_match.view_name == 'deleteCase' or request.resolver_match.view_name == 'deleteUser' or request.resolver_match.view_name == 'deleteResponsable'  %}
             <p>{{ text }} {{ object.nombre }}?</p>
             {%endif%}
             {{ form.as_p }}

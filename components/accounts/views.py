@@ -20,13 +20,23 @@ from components.accounts.models import CustomUser
 
 class SignUpView(generic.CreateView):
     form_class = CreationUserForm
-    success_url = reverse_lazy('login')
-    template_name = 'registration/signup.html'
+    success_url = reverse_lazy('users')
+    template_name = 'create.html'
 
+    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
+        if request.user.rol !="ADMINISTRADOR" :
             return redirect(reverse_lazy('charts'))
         return super().dispatch(request, *args, **kwargs)
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Gmayo: Crear Usuario'
+        context['title2'] = 'Usuario'
+        context['cardTitle'] = 'Crear Usuario'
+
+        return context
 
 class ProfileUpdateUserView(generic.UpdateView):
     form_class = ProfileForm
@@ -73,7 +83,7 @@ class UsersListView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Gmayo: Usuarios registrados'
         context['urlEdit'] = '/accounts/edit_user'
-        #context['urlDelete'] = '/accounts/delete_user'
+        context['urlDelete'] = '/accounts/delete_user'
         context['title2'] = 'Usuarios'
         context['cardTitle'] = 'Usuarios Registrados'
 
@@ -95,6 +105,29 @@ class UsersUpdateView(UpdateView):
         context['title'] = 'Gmayo: Editar Usuario'
         context['title2'] = 'Usuarios'
         context['cardTitle'] = 'Editar Usuarios'
+
+        return context
+
+
+class UserDeleteView(DeleteView):
+    model = CustomUser
+    success_url = reverse_lazy('users')
+
+    template_name = "create.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.rol == "Coord. Proyectos":
+            return redirect(reverse_lazy('charts'))
+
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Eliminar Usuario'
+        context['text'] = 'Esta seguro de que desea eliminar este usuario'
+        context['title2'] = 'Usuario'
+        context['cardTitle'] = 'Eliminar Usuario'
 
         return context
 

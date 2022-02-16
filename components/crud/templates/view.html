@@ -61,8 +61,16 @@
         <div class="card">
         <div class="card-header">
           <h3 class="card-title">{{title3}}{{cardTitle}}</h3>
+          {%if request.resolver_match.view_name == 'users' %}
 
+          <div class="card-tools">
+            <a class="btnexp btn btn-success btn-sm btn-block" href="../signup">
+              <i class="far fa-plus-square"></i>         Nuevo</a>
 
+         
+          </div>
+          {%endif%}
+          
         </div>
         <div class="card-body">
 
@@ -161,7 +169,7 @@
                      class="btn btn-warning btn-xs btn-flat"><i
                       class="fas fa-edit"></i></a>
                       {%endif%}
-                      {% if request.resolver_match.view_name != 'users' and request.user.rol != "Coord. Proyectos"%}
+                      {% if request.user.rol != "Coord. Proyectos"%}
 
                   <a href="{{urlDelete}}/{{object.id}}" type="button" class="btn btn-danger btn-xs btn-flat"><i
                       class="fas fa-trash-alt"></i></a>
@@ -268,7 +276,7 @@
 </script>
 {%endif%}
 
-{% if request.resolver_match.view_name == 'casos' or request.resolver_match.view_name == 'responsables' %}
+{% if request.resolver_match.view_name == 'casos' or request.resolver_match.view_name == 'responsables' or request.resolver_match.view_name == 'users' %}
 
 <script>
 

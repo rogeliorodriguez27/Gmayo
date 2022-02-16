@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'gmayo.wsgi.application'
 
 DATABASES = {
 
-    'default': { #postgres
+    'postgres': { #postgres
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
         'NAME': 'gmayoDB',
@@ -98,8 +98,8 @@ DATABASES = {
         'PORT': '5432',
     },
     
-    'mysql': { #mysql
-       # 'ENGINE': 'django.db.backends.mysql',
+    'default': { #mysql
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'rogelidev$gmayoDB',
         'USER': 'rogelidev',
         'PASSWORD': 'admin2022',
@@ -124,6 +124,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True 
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -160,3 +163,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# email configs
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'soportegmayoutdft@gmail.com'
+EMAIL_HOST_PASSWORD = 'sgmwnpnwhcvdufcd'
