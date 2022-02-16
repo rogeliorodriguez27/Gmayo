@@ -26,4 +26,10 @@ class CustomUser(AbstractUser):
         choices=rol_choice,
         verbose_name="Rol",
         unique=True,
+        blank=False
     )
+    
+    def save(self, *args, **kwargs):
+        if self.rol =="":
+            self.rol = "ADMINISTRADOR"
+        super(CustomUser, self).save(*args, **kwargs)

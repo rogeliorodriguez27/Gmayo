@@ -20,7 +20,7 @@ from components.accounts.models import CustomUser
 
 class SignUpView(generic.CreateView):
     form_class = CreationUserForm
-    success_url = reverse_lazy('users')
+    success_url = reverse_lazy('accounts:users')
     template_name = 'create.html'
 
     @method_decorator(login_required)
@@ -92,7 +92,7 @@ class UsersListView(generic.ListView):
 class UsersUpdateView(UpdateView):
     model = CustomUser
     form_class = CreationUserForm
-    success_url = reverse_lazy('users')
+    success_url = reverse_lazy('accounts:users')
 
     template_name = "create.html"
 
@@ -111,7 +111,7 @@ class UsersUpdateView(UpdateView):
 
 class UserDeleteView(DeleteView):
     model = CustomUser
-    success_url = reverse_lazy('users')
+    success_url = reverse_lazy('accounts:users')
 
     template_name = "create.html"
 

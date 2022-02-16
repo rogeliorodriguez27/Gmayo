@@ -31,7 +31,7 @@
             <p id="year">Periodo A.:{{ object.year}}</p>
 <p id="resumen">Resumen:{{ object.resumen}}</p>
 <p id="estado">Estatus:{{ object.estado}}</p>
-{%if object.upload} != "" %}
+{%if object.upload != "" %}
 <p><a id="pdf"  class="btn btn-primary" onclick="stopDefAction(event)" href="{{ object.upload}}">                    <i class="far fa-newspaper"></i>
 Visualizar Informe  </a></p>
 {%endif%}
