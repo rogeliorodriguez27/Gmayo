@@ -1,5 +1,5 @@
 from django.contrib.auth.models import AbstractUser
-from django.db import models
+from django.db import IntegrityError, models
 
 
 class CustomUser(AbstractUser):
@@ -31,5 +31,12 @@ class CustomUser(AbstractUser):
     
     def save(self, *args, **kwargs):
         if self.rol =="":
-            self.rol = "ADMINISTRADOR"
-        super(CustomUser, self).save(*args, **kwargs)
+            try:
+                self.rol = "ADMINISTRADOR"
+                super(CustomUser, self).save(*args, **kwargs)
+            except IntegrityError:
+                print("Error: Ya existe un superusuario")
+                exit()
+                
+        else:
+            super(CustomUser, self).save(*args, **kwargs)

@@ -98,6 +98,9 @@ class UsersUpdateView(UpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if request.user.rol != "ADMINISTRADOR":
+            return redirect(reverse_lazy('charts'))
+
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -117,7 +120,7 @@ class UserDeleteView(DeleteView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
-        if request.user.rol == "Coord. Proyectos":
+        if request.user.rol != "ADMINISTRADOR":
             return redirect(reverse_lazy('charts'))
 
         return super().dispatch(request, *args, **kwargs)
