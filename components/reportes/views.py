@@ -555,7 +555,7 @@ class ReporteProyectosListView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Gmayo: Proyectos registrados'
+        context['title'] = 'Gestor de Proyectos de la Universidad Territorial Deltaica "Francisco Tamayo"'
         context['title2'] = 'Proyectos'
         context['title3'] = 'Proyectos registrados'
         context['form'] = reporteForm

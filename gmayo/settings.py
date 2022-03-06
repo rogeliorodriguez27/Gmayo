@@ -125,6 +125,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True 
 
 
