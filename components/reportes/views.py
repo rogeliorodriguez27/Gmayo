@@ -552,6 +552,8 @@ class ReporteProyectosListView(TemplateView):
 
 
         return self.render_to_response(context)
+    
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -588,4 +590,7 @@ def generate_pdf(request, pk):
         return response
     else:
         return HttpResponseRedirect(reverse_lazy('login'))
+
+
+
 

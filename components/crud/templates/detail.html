@@ -1,4 +1,7 @@
+
 {%extends "body.html"%}
+{% load poll_extras %}
+
 {%block content%}
 <div class="container-fluid">
   <div class="row">
@@ -24,8 +27,9 @@
        
 <p id="nombre">Nombre: {{ object.nombre}}  </p>
 <p id="caso">Caso: {{ object.caso.nombre}}, parroquia {{ object.caso.parroquia}}, municipio {{ object.caso.municipio}}, estado {{ object.caso.estado}}</p>
-<p id="int">Integrantes:{{ object.integrantes}}</p>
-<p id="pnf">Carrera: Programa Nacional de Formación en {{ object.pnf}}</p>
+<p id="int">Integrantes:<br>{{ object.integrantes}}</p>
+<p id="linea">Linea de Investigación:{{ object.linea}}</p>
+<p id="pnf">Programa Nacional de Formación en {{ object.pnf}}</p>
 <p id="tutor">Tutor:{{ object.responsable.nombre}}</p>
 <p id="trayecto">Trayecto:{{ object.trayecto}}</p>
             <p id="year">Periodo A.:{{ object.year}}</p>

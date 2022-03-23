@@ -52,6 +52,8 @@ class Proyecto(models.Model):
         ("Fisioterapia", 'Fisioterapia'),
         ("Medicina Veterinaria", 'Medicina Veterinaria'),
         ("Enfermería Integral Comunitaria", 'Enfermeria Int. Comunitaria'),
+        ("Educación Inicial", 'Educación Inicial'),
+
 
 
     ]
@@ -101,6 +103,7 @@ class Proyecto(models.Model):
     year = models.CharField(choices=yearChoice,max_length=20, verbose_name="Periodo Académico", blank=True)
     responsable = models.ForeignKey(Responsable, on_delete=models.CASCADE, verbose_name='Responsable', blank=True)
     caso = models.ForeignKey(Caso, on_delete=models.CASCADE, verbose_name='Caso')
+    linea = models.CharField(max_length=100, verbose_name='Linea de Investigación', blank=True)
     resumen = models.TextField(max_length=2000, verbose_name='Resumen', default='ninguno')
 
     integrantes = models.TextField(max_length=300, verbose_name='Integrantes', default='no disponible')
@@ -117,4 +120,5 @@ class Proyecto(models.Model):
         print(rol)
         if rol !="ADMINISTRADOR":
             self.pnf = rol
+        self.nombre = self.nombre.upper()
         super(Proyecto, self).save(*args, **kwargs)

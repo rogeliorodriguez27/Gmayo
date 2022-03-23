@@ -1,5 +1,6 @@
 {%extends "body.html"%}
 {% load widget_tweaks %}
+{% load poll_extras %}
 
 {%block content%}
 <div class="container-fluid">
@@ -92,10 +93,14 @@
 
                 </th>
                   {% if request.resolver_match.view_name == 'reportProyecto' %}
-                <th>Carrera</th>
+                <th>PNF</th>
+
                 <th>Integrantes</th>
+
                 <th>Tutor</th>
                 <th>Trayecto</th>
+                <th style="text-align: center;">Linea de Investigación</th>
+
                 <th style="text-align: center;">Periodo</th>
                 <th>Estatus</th>
                   {%endif%}
@@ -134,9 +139,11 @@
                 <td >{{ object.nombre}} <br> Caso: {{ object.caso.nombre}}, parroquia {{ object.caso.parroquia}}, municipio {{ object.caso.municipio}}, estado {{ object.caso.estado}}</td>
 
                 <td>{{ object.pnf}}</td>
-                <td>{{ object.integrantes}}</td>
+                <td class="integrantes">{{ object.integrantes}}</td>
                 <td>{{ object.responsable.nombre}}</td>
                 <td>{{ object.trayecto}}</td>
+                <td>{{ object.linea}}</td>
+
                 <td>{{ object.year}}</td>
 
                 <td>{{ object.estado}}</td>
@@ -241,8 +248,16 @@
 
           buttons: [{
             extend: 'pdfHtml5',
-            exportOptions: {
+            
+
+            exportOptions:{
               columns: [0,1,2,3,4,5,6]},
+
+            
+  
+
+              
+          
               
             text: 'Generar Reporte',
             customize: function ( doc ) {
@@ -267,7 +282,7 @@
                 doc.content.splice( 2, 0, {
                   margin: [ 0, 0, 0, 12 ],
                   alignment: 'center',
-                  text:"Trayecto: {{trayecto}} Periodo A.: {{year}} Reponsable: {{responsable}} Estatus: {{estado}} Carrera: {{pnf}} ",
+                  text:"Trayecto: {{trayecto}} Periodo A.: {{year}} Reponsable: {{responsable}} Estatus: {{estado}} PNF: {{pnf}} ",
               } 
               
               

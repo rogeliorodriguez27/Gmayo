@@ -17,6 +17,7 @@ class CustomUser(AbstractUser):
         ("Fisioterapia", 'Coord. Fisioterapia'),
         ("Medicina Veterinaria", 'Coord. Medicina Veterinaria'),
         ("Enfermería Integral Comunitaria", 'Coord. Enfermeria Int.'),
+        ("Educación Inicial", 'Educación Inicial'),
 
 
     ]
