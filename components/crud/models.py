@@ -41,20 +41,25 @@ class Proyecto(models.Model):
     nombre = models.CharField(max_length=200, verbose_name='Nombre')
 
     pnf_choice = [
-        ("Administracion", "Administracion"),
-        ("Contaduria Publica", 'Contaduria Publica'),
+        ("Administración", "Administración"),
+        ("Contaduría Pública", 'Contaduria Pública'),
         ("Turismo", 'Turismo'),
-        ("Agroalimentacion", 'Agroalimentacion'),
-        ("Informatica", 'Informatica'),
-        ("Construccion Civil", 'Construccion Civil'),
-        ("Procesamiento y Distribucion de alimentos", 'Procesamiento y Dist. de alimentos'),
+        ("Agroalimentación", 'Agroalimentación'),
+        ("Informática", 'Informática'),
+        ("Construcción Civil", 'Construcción Civil'),
+        ("Procesamiento y Distribución de alimentos", 'Procesamiento y Dist. de alimentos'),
         ("Terapia Ocupacional", 'Terapia Ocupacional'),
         ("Fisioterapia", 'Fisioterapia'),
+        ("Medicina Veterinaria", 'Medicina Veterinaria'),
+        ("Enfermería Integral Comunitaria", 'Enfermeria Int. Comunitaria'),
+        ("Educación Inicial", 'Educación Inicial'),
+
+
 
     ]
 
     pnf = models.TextField(
-        max_length=41,
+        max_length=50,
         choices=pnf_choice,
 
         verbose_name="Carrera",
@@ -71,7 +76,7 @@ class Proyecto(models.Model):
     estado = models.TextField(
         max_length=50,
         choices=estado_choice,
-        verbose_name="Estado",
+        verbose_name="Estatus",
         blank=True
     )
 
@@ -93,15 +98,16 @@ class Proyecto(models.Model):
     date = currentDateTime.date()
     yearToday = date.strftime("%Y")
     yearInt = int(yearToday) + 1
-    yearChoice = [(f"{i}-{i+1}",f"{i}-{i+1}") for i in range(2008, yearInt)]
+    yearChoice = [(f'{i}',f'{i}') for i in range(2008, yearInt)]
 
     year = models.CharField(choices=yearChoice,max_length=20, verbose_name="Periodo Académico", blank=True)
     responsable = models.ForeignKey(Responsable, on_delete=models.CASCADE, verbose_name='Responsable', blank=True)
     caso = models.ForeignKey(Caso, on_delete=models.CASCADE, verbose_name='Caso')
-    resumen = models.TextField(max_length=300, verbose_name='Resumen', default='ninguno')
+    linea = models.CharField(max_length=100, verbose_name='Linea de Investigación', blank=True)
+    resumen = models.TextField(max_length=2000, verbose_name='Resumen', default='ninguno')
 
     integrantes = models.TextField(max_length=300, verbose_name='Integrantes', default='no disponible')
-    upload = models.FileField(max_length=50, upload_to='uploads/%Y/%m/%d/',verbose_name='Documento', blank=False, validators=[file_size])
+    upload = models.FileField(max_length=50, upload_to='uploads/%Y/%m/%d/',verbose_name='Documento', blank=True, validators=[file_size])
 
     class Meta:
         verbose_name = 'Proyecto'
@@ -114,4 +120,5 @@ class Proyecto(models.Model):
         print(rol)
         if rol !="ADMINISTRADOR":
             self.pnf = rol
+        self.nombre = self.nombre.upper()
         super(Proyecto, self).save(*args, **kwargs)

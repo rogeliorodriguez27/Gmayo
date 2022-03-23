@@ -16,8 +16,8 @@ class reporteForm(ModelForm):
     currentDateTime = datetime.datetime.now()
     date = currentDateTime.date()
     yearToday = date.strftime("%Y")
-    yearInt = int(yearToday)+1
-    yearChoice = [(f"{i}-{i+1}",f"{i}-{i+1}") for i in range(2008, yearInt)]
+    yearInt = int(yearToday)
+    yearChoice = [(i,i) for i in range(2008, yearInt)]
     yearChoice.insert(0, (0, '----'))
 
     years = ChoiceField(required=False, choices=yearChoice, label="Periodo Académico")    

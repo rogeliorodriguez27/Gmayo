@@ -14,7 +14,7 @@
           <img src="/static/images/avatar/avatar1.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="/accounts/profile" class="d-block">{{request.user}}</a>
+          <a href="/accounts/profile" class="d-block">{{request.user}} <br> <p style="font-size: 80%;">({{request.user.rol}})</p> </a>
         </div>
       </div>
 
@@ -25,7 +25,9 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
+          
+          {% if request.user.rol != "Coord. Proyectos"%}
+               <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="far fa-plus-square"></i>
               <p>
@@ -53,12 +55,12 @@
               </li>
               <li class="nav-item">
                 <a href="/crud/agregarResponsable" class="nav-link">
-                    <i class="fas fa-user-friends"></i>
-                  <p>Docentes</p>
+                  <i class="fas fa-chalkboard-teacher"></i>                  <p>Docentes</p>
                 </a>
               </li>
             </ul>
           </li>
+          {%endif%}
           <li class="nav-header">Ver</li>
           <li class="nav-item">
                 <a href="/report/proyectos" class="nav-link">
@@ -74,11 +76,21 @@
               </li>
           <li class="nav-item">
                 <a href="/crud/responsables" class="nav-link">
-                    <i class="fas fa-user-friends"></i>
-                  <p>Docentes</p>
+                  <i class="fas fa-chalkboard-teacher"></i>                  <p>Docentes</p>
                 </a>
               </li>
           <li class="nav-header">GMAYO</li>
+          {%if request.user.rol == "ADMINISTRADOR"%}
+          <li class="nav-item">
+         
+          <a href="/accounts/users/" class="nav-link">
+            <i class="fas fa-user-friends"></i>
+            <p>  Usuarios</p>
+
+          </a>
+              </li>
+              {%endif%}
+           
           <li class="nav-item">
                 <a href="/dashboard/" class="nav-link">
                   <i class="fas fa-info-circle"></i>

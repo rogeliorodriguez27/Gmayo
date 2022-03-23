@@ -32,8 +32,8 @@ class charts(TemplateView):
     date = currentDateTime.date()
     yearToday = date.strftime("%Y")
     yearInt = int(yearToday)
-    periodoActual = f'{yearInt-1}-{yearInt}'
-    periodoPast = f'{yearInt-2}-{yearInt-1}'
+    periodoActual = yearInt
+    periodoPast = yearInt-1
     
     proyectYearInCourse = Proyecto.objects.filter(year=periodoActual)
     proyectPastYear = Proyecto.objects.filter(year=periodoPast)

@@ -41,10 +41,7 @@ class ProyectoFormForNonSuperUser(ModelForm):
             )
         }
 
-        def save(self, commit=True):
-            self.pnf = "Fisioterapia"
-
-            return super(ProyectoFormForNonSuperUser, self).save(commit=commit)
+      
 
 
 class ProyectoForm(ModelForm):

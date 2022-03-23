@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
-import dj_database_url
-from decouple import config
+from unittest import TextTestRunner
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!6n_8%j$ga$bawln!i3cn4(&vfcyzy+5ek4=pw=*pg36&mk%a!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -84,10 +84,8 @@ WSGI_APPLICATION = 'gmayo.wsgi.application'
 
 
 DATABASES = {
-        'default': dj_database_url.config(
-        default=config('DATABASE_URL')),
 
-    'postgresql': {
+    'default': { #postgres
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
         'NAME': 'gmayoDB',
@@ -99,6 +97,14 @@ DATABASES = {
         'HOST': 'localhost',
 
         'PORT': '5432',
+    },
+    
+    'default2': { #mysql
+        #'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'rogelidev$gmayoDB',
+        'USER': 'rogelidev',
+        'PASSWORD': 'admin2022',
+        'HOST': 'rogelidev.mysql.pythonanywhere-services.com',
     }
 }
 
@@ -119,6 +125,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True 
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -155,3 +166,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# email configs
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'soportegmayoutdft@gmail.com'
+EMAIL_HOST_PASSWORD = 'sgmwnpnwhcvdufcd'

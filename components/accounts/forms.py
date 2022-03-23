@@ -5,6 +5,11 @@ from components.accounts.models import CustomUser
 
 
 class CreationUserForm(UserCreationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for form in self.visible_fields():
+            form.field.widget.attrs['class'] = 'form-control'
+      
     class Meta:
         model = CustomUser
         fields = UserCreationForm.Meta.fields + ('rol',)

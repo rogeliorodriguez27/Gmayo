@@ -7,20 +7,19 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">{{cardTitle}}
-                    {% if request.resolver_match.view_name == 'profile' %}
+                    {% if request.resolver_match.view_name == 'accounts:profile' %}
             : {{ request.user }}
             {%endif%}
 
 
           </h3>
 
-
         </div>
         <div class="card-body">
 
           <form method="POST" id="post-form" style="width:60%; margin:auto;" enctype="multipart/form-data">
             {% csrf_token %}
-            {% if request.resolver_match.view_name == 'deleteProyect' or request.resolver_match.view_name == 'deleteCase' or request.resolver_match.view_name == 'deleteResponsable'  %}
+            {% if request.resolver_match.view_name == 'deleteProyect' or request.resolver_match.view_name == 'deleteCase' or request.resolver_match.view_name == 'accounts:deleteUser' or request.resolver_match.view_name == 'deleteResponsable'  %}
             <p>{{ text }} {{ object.nombre }}?</p>
             {%endif%}
             {{ form.as_p }}
