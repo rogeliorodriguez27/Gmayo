@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!6n_8%j$ga$bawln!i3cn4(&vfcyzy+5ek4=pw=*pg36&mk%a!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -54,7 +54,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    
+
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 MIDDLEWARE += ('crum.CurrentRequestUserMiddleware','whitenoise.middleware.WhiteNoiseMiddleware',)
@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'gmayo.wsgi.application'
 
 DATABASES = {
 
-    'default': { #postgres
+    'default2': { #postgres
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
         'NAME': 'gmayoDB',
@@ -98,13 +98,13 @@ DATABASES = {
 
         'PORT': '5432',
     },
-    
-    'default2': { #mysql
-        #'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rogelidev$gmayoDB',
-        'USER': 'rogelidev',
-        'PASSWORD': 'admin2022',
-        'HOST': 'rogelidev.mysql.pythonanywhere-services.com',
+
+    'default': { #mysql
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'gmayo$gmayoDB',
+        'USER': 'gmayo',
+        'PASSWORD': 'admin2021',
+        'HOST': 'gmayo.mysql.pythonanywhere-services.com',
     }
 }
 
@@ -128,7 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 
 # Internationalization
