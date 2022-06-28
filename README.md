@@ -5,7 +5,7 @@ Gerente de proyetos
 # Preview
 http://rogelidev.pythonanywhere.com/
 
-#Building
+# Building
 Crie uma pasta para o Django.
 
 Dentro da pasta, crie um ambiente com o comando python -m venv <pasta_do_ambiente>
