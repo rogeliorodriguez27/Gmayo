@@ -1,6 +1,6 @@
 # Gmayo
 
-Gerente de proyetos
+Gerenciador de tese desenvolvido para a Universidade Francisco Tamayo
 
 # Preview
 http://rogelidev.pythonanywhere.com/
